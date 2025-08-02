@@ -1,0 +1,49 @@
+.overlayContent{
+    width: 60%;
+    height: 800px;
+    background-image: url('@/assets/envelope.png');
+    background-size: 100% 100%;
+    margin: auto;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
+    margin: auto;
+    .overlayOpen{
+        width: 120px;
+        height: 120px;
+        background-color: bisque;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20%;
+    }
+    .overlayText{
+        color: bisque;
+        font-weight: bold;
+        position: absolute;
+        box-sizing: border-box;
+        text-align: center;
+        left: 50%;
+        width: 100%;
+        padding: 32px;
+        transform: translateX(-50%);
+        top: 50%;
+        .overlayTextTitle{
+            font-size: 32px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .overlayTextTitle2{
+            font-size: 23px;
+            width: 100%;
+        }
+    }
+}

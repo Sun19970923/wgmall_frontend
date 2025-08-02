@@ -10,12 +10,17 @@
     "start:uat": "cross-env UMI_ENV=uat umi dev"
   },
   "dependencies": {
+    "antd": "^5.26.4",
     "antd-mobile": "^5.24.1",
     "antd-mobile-icons": "^0.3.0",
     "axios": "^1.1.3",
+    "classnames": "^2.5.1",
     "dva": "^2.4.1",
     "lib-flexible": "^0.3.2",
     "normalize.css": "^8.0.1",
+    "react-i18next": "^13.0.0",
+    "i18next": "^23.0.0",
+    "react-spring": "^10.0.1",
     "redux": "^4.2.0",
     "umi": "^4.0.25"
   },

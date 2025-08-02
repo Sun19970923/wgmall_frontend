@@ -1,0 +1,106 @@
+.indexBody{
+    background-image: url('@/assets/banner7.png');
+    width: 100%;
+    min-height: 100vh;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: rgb(233,48,28);
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    .header{
+        padding: 4em;
+        .runChunk{
+            background-image: url('@/assets/order_matic_title.png');
+            width: 100%;
+            background-repeat: no-repeat;
+            height: 350px;
+            background-size: 100% 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom:20px;
+            .playContainer {
+                display: flex;
+                height: 150px;
+                gap: 14px;
+            }
+            .box {
+                position: relative;
+                transition: all ease-out;
+                width: 150px;
+                height: 150px;
+                background-color: #d3ebff;
+                overflow: hidden;
+                margin-right: 8px;
+            }
+            
+            .numList {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                text-align: center;
+                line-height: 150px;
+                font-size: 44px;
+            }
+            
+        }
+    }
+
+    .data{
+        position: absolute;
+        top: 700px;
+        padding: 10px 40px;
+        box-sizing: border-box;
+        flex: 1;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: #eee;
+        text-align: center;
+    }
+
+    .button{
+        width: 500px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 850px;
+    }
+
+    .submit{
+        width: 100%;
+        background-color: #fb7701 !important;
+        color: #fff;
+        border-radius: 999rem;
+        height: 1.2rem;
+        outline: none;
+        background: #fb7701 !important;
+        font-size: .5rem;
+    }
+
+    .customBody{
+        h1{
+            font-size: 3.4em;
+        }
+        h3{
+            font-size: 1.8em;
+            line-height: 1.4em !important;
+            margin: 0;
+        }
+        .datas{
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .data_item{
+                font-size: 1.2em;
+                text-align: center;
+            }
+        }
+    }
+}
+

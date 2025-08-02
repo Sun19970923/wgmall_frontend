@@ -2,11 +2,75 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f6f6f6;
+}
+
+:global{
+  .adm-auto-center-content{
+    font-size: 18px !important;
+  }
+  .adm-empty-description{
+    font-size: 28px !important;
+    color: #333;
+    margin-top: 30px;
+  }
+  .adm-infinite-scroll{
+    font-size: 24px;
+  }
+
+  .adm-nav-bar{
+    height: 100px;
+  }
+  .adm-nav-bar-title{
+    font-size: 2em;
+  }
+  .adm-nav-bar-back-arrow{
+    font-size: 28px;
+  }
 }
 
 .top {
   flex: 0;
   border-bottom: solid 1px var(--adm-color-border);
+}
+
+.popup{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: 99999;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    width: 500px;
+    height: 800px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  span, b{
+    color: #333;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 60px;
+    z-index: 99999;
+    padding-bottom: 150px;
+    position: relative;
+  }
+  b{
+    padding-top: 200px;
+    padding-right: 40px;
+  }
 }
 
 .bottom {
@@ -27,3 +91,10 @@
     }
   }
 }
+
+
+body {
+  /* 设置页面主体字体大小 */
+  font-size: 14px;
+}
+
