@@ -2,7 +2,7 @@
  * @Author: Evan sun1148526297@gmail.com
  * @Date: 2025-07-30 00:18:38
  * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-08-01 03:35:58
+ * @LastEditTime: 2025-08-07 02:04:10
  * @FilePath: \新建文件夹\新建文件夹\ChatPage.jsx
  * @Description: 聊天页面组件
  */
@@ -41,7 +41,13 @@ export default function ChatPage() {
     ws.connect();
 
     ws.onMessage(msg => {
-      console.log(t('shopmeeting.receivedMessageLog'), msg);
+      if(msg?.type === 'ping') {
+        ws.send({
+          "type": 'ping'
+        });
+        return
+      }
+
       if(msg.data?.length > 0){
         setLoading(false)
         setChatMessages(msg.data)
@@ -53,11 +59,12 @@ export default function ChatPage() {
     });
 
     ws.onOpen(() => {
-      ws.send({
+      ws.send(JSON.stringify({
         action: "history",
         senderId: id,
         receiverId: user.userId,
-      });
+      })
+      );
     })
   }
 
@@ -74,9 +81,16 @@ export default function ChatPage() {
     // 监听消息
     ws.onMessage(msg => {
       console.log(t('shopmeeting.receivedMessageLog'), msg);
-      if(msg.data){
+      if(msg?.type === 'ping') {
+        ws.send({
+          "type": 'ping'
+        });
+        return
+      }
+
+      if(msg.type == 'conversations' && msg.data){
         setLoading(false)
-        setUsers(msg.data)
+        setUsers(res.data)
       }
       if(msg.data){
         setUsers(msg.data)
@@ -143,6 +157,10 @@ export default function ChatPage() {
     setSelectedUser(user);
     requireChat(user)
   };
+
+  useEffect(() => {
+    return () => ws.close()
+  }, [])
 
   return (
       <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -228,7 +246,7 @@ export default function ChatPage() {
                                   key={message.id}
                                   style={{
                                     display: 'flex',
-                                    justifyContent: message.senderId === id ? 'flex-end' : 'flex-start',
+                                    justifyContent: message.senderId == id ? 'flex-end' : 'flex-start',
                                     marginBottom: '12px'
                                   }}
                               >
@@ -237,15 +255,15 @@ export default function ChatPage() {
                                       maxWidth: '70%',
                                       padding: '8px 12px',
                                       borderRadius: '12px',
-                                      backgroundColor: message.senderId === id ? '#007AFF' : '#fff',
-                                      color: message.senderId === id ? '#fff' : '#333',
+                                      backgroundColor: message.senderId == id ? '#007AFF' : '#fff',
+                                      color: message.senderId == id ? '#fff' : '#333',
                                       boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
                                     }}
                                 >
                                   <div>{message.content}</div>
                                   <div style={{
                                     fontSize: '10px',
-                                    color: message.senderId === id ? 'rgba(255,255,255,0.7)' : '#999',
+                                    color: message.senderId == id ? 'rgba(255,255,255,0.7)' : '#999',
                                     marginTop: '4px'
                                   }}>
                                     {message.createTime}

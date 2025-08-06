@@ -2,7 +2,7 @@
  * @Author: Evan sun1148526297@gmail.com
  * @Date: 2025-07-30 00:18:38
  * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-08-01 03:46:59
+ * @LastEditTime: 2025-08-07 02:04:48
  * @FilePath: \新建文件夹\新建文件夹\ChatPage.jsx
  * @Description: 聊天页面组件
  */
@@ -29,6 +29,15 @@ let u = JSON.parse(localStorage.getItem('userInfo'))
 const ws = new SimpleWebSocket('wss://api.xxzh.cc/ws/chat?userId='+u.id)
 ws.connect();
 
+ws.onMessage(msg => {
+  console.log('收到消息：', msg);
+  if(msg?.type === 'ping'){
+    ws.send({
+      type: 'ping'
+    });
+  }
+});
+
 
 export default function ChatPage() {
   const [users, setUsers] = useState([]);
@@ -52,6 +61,8 @@ export default function ChatPage() {
     ws.connect();
 
     ws.onMessage(msg => {
+      if(msg?.type == 'ping') return
+      
       console.log('收到消息：', msg);
       if(msg.data?.length > 0){
         setChatMessages(msg.data)
@@ -165,7 +176,7 @@ export default function ChatPage() {
                       key={message.id}
                       style={{
                         display: 'flex',
-                        justifyContent: message.senderId !== userId ? 'flex-end' : 'flex-start',
+                        justifyContent: message.senderId == userId ? 'flex-end' : 'flex-start',
                         marginBottom: '12px'
                       }}
                     >
@@ -173,15 +184,15 @@ export default function ChatPage() {
                         style={{
                           padding: '8px 12px',
                           borderRadius: '12px',
-                          backgroundColor: message.senderId !== userId ? '#007AFF' : '#fff',
-                          color: message.senderId !== userId ? '#fff' : '#333',
+                          backgroundColor: message.senderId == userId ? '#007AFF' : '#fff',
+                          color: message.senderId == userId ? '#fff' : '#333',
                           boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
                         }}
                       >
                         <div style={{ fontSize: '14px' }}>{message.content}</div>
                         <div style={{ 
                           fontSize: '10px', 
-                          color: message.senderId !== userId ? 'rgba(255,255,255,0.7)' : '#999',
+                          color: message.senderId == userId ? 'rgba(255,255,255,0.7)' : '#999',
                           marginTop: '4px'
                         }}>
                           {message.createTime}
