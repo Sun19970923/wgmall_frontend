@@ -31,7 +31,7 @@ export default function Integral() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #e3e8ee 100%)', padding: '0 0 32px 0' }}>
-      <NavBar title={'个人中心'} style={{ height: '100px' }}></NavBar>
+      <NavBar title={'Temu Red Packet'} style={{ height: '100px' }}></NavBar>
 
       <Hongbao onChange={() => setHongbaoVisible(false)} visible={hongbaoVisible}></Hongbao>
 
@@ -42,17 +42,4 @@ export default function Integral() {
       </div>
     </div>
   )
-}
-
-
-function Chunk({ click }) {
-    return (
-        <div className={styles.modal}>
-            <p>签到获取领取红包次数</p>
-            
-            <div className={styles.button} onClick={() => {
-                click()
-            }}>Receive</div>
-        </div>
-    )
 }

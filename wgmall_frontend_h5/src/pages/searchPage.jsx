@@ -1,119 +1,137 @@
-/*
- * @Author: Evan sun1148526297@gmail.com
- * @Date: 2025-07-19 15:15:36
- * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-08-01 06:18:43
- * @FilePath: \wgmall_frontend\wgmall_frontend_h5\src\pages\user\message.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-import React, { useState } from 'react'
-import { List, Badge, InfiniteScroll, Empty, SearchBar } from 'antd-mobile'
-import { MessageOutline, FileOutline, QuestionCircleOutline } from 'antd-mobile-icons'
-import NavBar from '../components/NavBar'
-import { search } from '@/api/product'
-import styles from '@/assets/css/searchPage.less'
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { List, Badge, InfiniteScroll, Empty, SearchBar } from 'antd-mobile';
+import { MessageOutline, FileOutline, QuestionCircleOutline } from 'antd-mobile-icons';
+import NavBar from '../components/NavBar';
+import { search } from '@/api/product';
+import styles from '@/assets/css/searchPage.less';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // 引入 i18n 的 hook
 
-
-
-
-
-
-export default function Message() {
-  const [msgList, setMsgList] = useState([])
-  const [hasMore, setHasMore] = useState(true)
-  const [val, setVal] = useState('')
-  const [current, setCurrent] = useState({ page: 0 })
+export default function SearchPage() {
+  const { t } = useTranslation(); // 使用 t 方法获取翻译
+  const [msgList, setMsgList] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [val, setVal] = useState('');
+  const [current, setCurrent] = useState({ page: 0 });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (val !== '') {
+      loadMore();
+    }
+  }, [val]);
 
   const loadMore = async () => {
-    console.log(val, '131313131');
-    
-    if(!val){
-        setHasMore(false)
-        return
+    if (!val) {
+      setHasMore(false);
+      return;
     }
 
-    let res = await search({ keyword: val, page: current.page, size: 10 })
-    setCurrent((prev) => ({ page: prev.page + 1 }))
+    try {
+      let res = await search({ keyword: val, page: current.page, size: 10 });
+      setCurrent((prev) => ({ page: prev.page + 1 }));
 
-    console.log(res.data, '111')
-
-    if (res.data.length == 0) {
-      return setHasMore(false)
-    }
-
-    console.log(res)
-
-    setMsgList((prev) => {
-      if ([...prev, ...res.data].length >= res.data.total) {
-        setHasMore(false)
+      if (res.data.length === 0) {
+        setHasMore(false);
       }
-      return [...prev, ...res.data]
-    })
 
-    // const append = await mockRequest()
-    // setHasMore(append.length > 0)
-  }
+      setMsgList((prev) => {
+        if ([...prev, ...res.data].length >= res.data.total) {
+          setHasMore(false);
+        }
+        return [...prev, ...res.data];
+      });
+    } catch (error) {
+      console.error(t('searchpage.searchRequestFailed'), error);
+    }
+  };
 
   const getData = (aaa) => {
-    setVal(aaa)
-    setHasMore(true)
-  }
+    setVal(aaa);
+    setHasMore(true);
+    setMsgList([]);
+    setCurrent({ page: 0 });
+  };
 
   const handleRead = (id) => {
-    setMsgList((list) => list.map((msg) => (msg.id === id ? { ...msg, unread: false } : msg)))
-  }
+    setMsgList((list) =>
+      list.map((msg) => (msg.id === id ? { ...msg, unread: false } : msg))
+    );
+  };
 
   return (
     <div className={styles.content} style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #e3e8ee 100%)', padding: '0 0 32px 0' }}>
-      <NavBar title={'搜索'} style={{ height: '100px' }}></NavBar>
-
+      <NavBar
+        title={t('searchpage.search')}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          backgroundColor: '#fff',
+          height: '100px',
+          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+        }}
+      />
       <SearchBar
         onSearch={(val) => {
-          getData(val)
+          getData(val);
         }}
-        style={{ '--height': '50px', fontSize: '32px' }}
-        placeholder="请输入内容"
+        style={{
+          '--height': '50px',
+          fontSize: '16px',
+          borderRadius: '25px',
+          backgroundColor: '#f8f9fa',
+          padding: '0 20px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          color: '#333',
+          outline: 'none',
+          border: 'none',
+        }}
+        placeholder={t('searchpage.enterContent')}
+        clearable
+        showClearButton
+        onFocus={() => {
+          document.activeElement.style.outline = 'none';
+          document.activeElement.style.boxShadow = 'none';
+        }}
+        onBlur={() => {
+          document.activeElement.style.outline = 'none';
+          document.activeElement.style.boxShadow = 'none';
+        }}
       />
 
       {msgList.length > 0 ? (
-        <List style={{ '--border-top': 'none', '--border-bottom': 'none' }}>
+        <div className={styles.goodsGrid}>
           {msgList.map((msg, i) => (
-            <List.Item
+            <div
               key={i}
-              description={<span style={{ color: '#666', fontSize: 14 }}>{msg.content}</span>}
-              extra={<span style={{ color: '#aaa', fontSize: 13 }}>{msg.time}</span>}
+              className={styles.goodsItem}
               onClick={() => {
-                localStorage.setItem('item', JSON.stringify(msg))
-                navigate('/details')
-              }}
-              style={{
-                fontWeight: msg.unread ? 700 : 400,
-                background: msg.unread ? 'linear-gradient(90deg, #f5f7fa 0%, #fff 100%)' : '#fff',
-                borderRadius: 8,
-                margin: '8px 16px',
-                boxShadow: msg.unread ? '0 2px 8px rgba(60,80,120,0.06)' : 'none',
+                localStorage.setItem('item', JSON.stringify(msg));
+                navigate('/details');
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'flex-start',  }}> 
-                <img style={{ width: '100px', height: '100px', marginRight: '20px' }} src={baseApi + msg.imagePath} alt="" />
-                <span style={{ fontSize: 16, fontWeight: 700, width: 200 }}>
-                    <span>{msg.name}</span>
-                    <div>
-                        $ {msg.price}
-                    </div>
-                </span>
+              <img className={styles.goodsImg} src={baseApi + msg.imagePath} alt={msg.name} />
+              <div className={styles.goodsInfo}>
+                <span className={styles.goodsName}>{msg.name}</span>
+                <div className={styles.goodsPrice}>
+                  <span className={styles.price}>${msg.price}</span>
+                  <span className={styles.sales}>{t('home.goods.sales')}：{msg.sales || 0}</span>
+                  <div className={styles.goodsSeller}>
+                    {t('details.seller')}: {msg.uploader || '-'}
+                  </div>
+                </div>
               </div>
-              
-            </List.Item>
+            </div>
           ))}
-        </List>
+        </div>
       ) : (
-        <Empty style={{ padding: '64px 0' }} imageStyle={{ width: 128 }} description="暂无数据" />
+        <Empty style={{ padding: '64px 0' }} imageStyle={{ width: 128 }} description={t('searchpage.noData')} />
       )}
+
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </div>
-  )
+  );
 }

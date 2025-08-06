@@ -14,51 +14,56 @@ import { useNavigate } from "react-router-dom";
 
 
 export default ({ visible, onChange }) => {
-  const navigate = useNavigate();
-  const [num, setNum] = useState(0)
+    const navigate = useNavigate();
+    const [num, setNum] = useState(0)
 
-  const getHongbao = async () => {
-    let userinfo = JSON.parse(localStorage.getItem('userInfo'))
+    const getHongbao = async () => {
+        let userinfo = JSON.parse(localStorage.getItem('userInfo'))
 
-    let res = await redbag({ userId: userinfo.id })
-    console.log(res, 'res');
+        let res = await redbag({ userId: userinfo.id })
+        console.log(res, 'res');
 
-    if(res.code === 200){
-        onChange()
-        setTimeout(() => {
-            navigate('/order')
-        }, 2000);
+        if (res.code === 200) {
+            onChange()
+            setTimeout(() => {
+                navigate('/order')
+            }, 2000);
 
-        Toast.show({
-            icon: 'success',
-            content: res.message + 'Get amount $' + res.data.amount,
-        })
+            Toast.show({
+                content: '$' + res.data.amount,
+                style: {
+                    fontSize: '80px',  // 修改为你需要的字体大小
+                        fontWeight: 'bold', // 可选：让字体更加醒目
+
+                }
+            })
+
+        }
+
     }
-    
-  }
 
-  
 
-  
-  return (
-    <>
-        <Mask visible={visible} onMaskClick={() => onChange(false)}>
-            <div className={styles.overlayContent}>
-                <div className={styles.overlayOpen} onClick={() => getHongbao()}>
-                    Open
-                </div>
 
-                <div className={styles.overlayText}>
-                    <div className={styles.overlayTextTitle}>
-                        恭喜发财，打开红包获得好礼
+
+    return (
+        <>
+            <Mask visible={visible} onMaskClick={() => onChange(false)}>
+                <div className={styles.overlayContent}>
+                    <div className={styles.overlayOpen} onClick={() => getHongbao()}>
+                        Open
                     </div>
 
-                    <div className={styles.overlayTextTitle2}>
-                        打开红包，获得现金奖励
+                    <div className={styles.overlayText}>
+                        <div className={styles.overlayTextTitle}>
+                            Congratulations！
+                        </div>
+
+                        <div className={styles.overlayTextTitle2}>
+                            Finish Task, Get Reward
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Mask>
-    </>
-  )
+            </Mask>
+        </>
+    )
 }

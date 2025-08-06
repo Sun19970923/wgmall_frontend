@@ -31,14 +31,14 @@ export function formattedDate(timer) {
 export function splitNumberByProgress(startNumber, endNumber, parts) {
   const result = {};
   const step = 100 / parts; // 计算每一步的进度增量
-  
+
   for (let i = 0; i <= parts; i++) {
     const progress = i * step; // 当前进度百分比
     // 计算当前进度对应的值，在起始值和结束值之间线性插值
     const value = (startNumber + (endNumber - startNumber) * progress / 100).toFixed(2);
     result[progress] = parseFloat(value); // 将字符串转换为浮点数
   }
-  
+
   return result;
 }
 
@@ -50,6 +50,8 @@ export class SimpleWebSocket {
     this.ws = null;
     this.listeners = [];
     this.onOpenCallbacks = [];
+    this.onCloseCallbacks = []; // ✅ 必须初始化
+    this.onErrorCallbacks = []; // ✅ 必须初始化
   }
 
   connect() {
@@ -65,11 +67,21 @@ export class SimpleWebSocket {
       } catch {}
       this.listeners.forEach(fn => fn(data));
     };
+
+    // ✅ 监听 close
+    this.ws.onclose = (e) => {
+      this.onCloseCallbacks.forEach(fn => fn(e));
+    };
+
+    // ✅ 监听 error
+    this.ws.onerror = (err) => {
+      this.onErrorCallbacks.forEach(fn => fn(err));
+    };
   }
 
   send(msg) {
     console.log(this.ws, 'this.ws');
-    
+
     if (!this.ws || this.ws.readyState !== 1) return;
     if (typeof msg !== 'string') msg = JSON.stringify(msg);
     this.ws.send(msg);
@@ -88,5 +100,15 @@ export class SimpleWebSocket {
 
   onOpen(fn) {
     this.onOpenCallbacks.push(fn);
+  }
+
+  // ✅ 新增 onClose
+  onClose(fn) {
+    this.onCloseCallbacks.push(fn);
+  }
+
+  // ✅ 新增 onError
+  onError(fn) {
+    this.onErrorCallbacks.push(fn);
   }
 }

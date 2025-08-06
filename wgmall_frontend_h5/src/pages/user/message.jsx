@@ -52,7 +52,7 @@ export default function Message() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #f5f7fa 0%, #e3e8ee 100%)', padding: '0 0 32px 0' }}>
-        <NavBar title={'个人中心'} style={{ height: '100px' }}></NavBar>
+        <NavBar title={'Message'} style={{ height: '100px' }}></NavBar>
         {
           msgList.length > 0 ?
           <List style={{ '--border-top': 'none', '--border-bottom': 'none' }}>

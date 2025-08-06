@@ -1,11 +1,3 @@
-/*
- * @Author: Evan sun1148526297@gmail.com
- * @Date: 2025-07-13 22:09:08
- * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-08-01 23:48:35
- * @FilePath: \wgmall_frontend\wgmall_frontend_h5\src\pages\order\index.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import { PullToRefresh, Button, Toast, Card, Space, TabBar, Badge, Divider, Grid } from "antd-mobile";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.less";
@@ -26,9 +18,9 @@ import Swiper from "../../components/SwiperOrder";
 import { info } from '@/api/user';
 import { useEffect, useState } from "react";
 import LoadingMask from '../../components/Loading';
-
-
-
+import { useTranslation } from 'react-i18next'; // 导入 useTranslation
+import rechargeIcon from '@/assets/icon/recharge.svg';
+import withdrawIcon from '@/assets/icon/withdraw.svg';
 
 
 const Home = () => {
@@ -36,45 +28,35 @@ const Home = () => {
   const [user, setUser] = useState({}); // data
   const [shouru, setShouru] = useState({}); // data
   const [loading, setLoading] = useState(false);
-
-
+  const { t } = useTranslation(); // 使用 t 函数
 
   const getData = async () => {
     setLoading(true)
     let userinfo = JSON.parse(localStorage.getItem('userInfo'))
-    
+
     let infoData = await info({ userId: userinfo.id })
 
     setUser(infoData.data)
     setLoading(false)
-
   }
 
-
-   // 0 签到  1领红包  3 到刷页
-   const handleClick = (type) => {
-    
-    if(type == '0') {
-      // setHongbaoVisible(true)
+  const handleClick = (type) => {
+    if (type == '0') {
       navigate('/integral')
     }
 
-    if(type == '1') {
+    if (type == '1') {
       navigate('/user/apply')
     }
   }
-
 
   useEffect(() => {
     getData()
   }, [])
 
-
-
   return (
     <div className={styles.indexContainer}>
       <LoadingMask visible={loading} />
-
 
       <div className={styles.indexBody}>
         <PullToRefresh
@@ -82,101 +64,95 @@ const Home = () => {
             getData()
           }}
         >
+          <div className={styles.header} onClick={() => navigate('/home')}>
+            <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" fill="#fb7701" stroke="none" strokeWidth="18.962962962962962" preserveAspectRatio="none">
+              <title>temu</title>
+              <path d="M796.4 0c125.7 0 227.6 101.9 227.6 227.6l0 568.8c0 125.7-101.9 227.6-227.6 227.6l-568.8 0c-125.7 0-227.6-101.9-227.6-227.6l0-568.8c0-125.7 101.9-227.6 227.6-227.6l568.8 0z m-256 531.9l-13.6 0c-12.1 0-22 9.8-21.9 21.9l0 150.5c0 12.1 9.8 22 21.9 22 12.1 0 22-9.8 22-22l0-98.8 37 52.2c7.7 10.8 23.7 10.8 31.5 0l37-52.2 0 98.8c0 12.1 9.8 22 22 22 12.1 0 22-9.8 21.9-22l0-150.5c0-12.1-9.8-22-21.9-21.9l-13.6 0c-5.2 0-10.2 2.5-13.2 6.8l-47.9 72-48-72c-3-4.3-7.9-6.8-13.2-6.8z m340.2 0c-12.1 0-22 9.8-22 21.9l0 91.9c0 28.9-16.3 43.7-43.1 43.6-26.8 0-43.1-15.3-43-44.9l0-90.6c0-12.1-9.8-22-22-21.9-12.1 0-22 9.8-21.9 21.9l0 91.6c0 53.6 32.8 80.9 86.4 80.9 53.6 0 87.6-27 87.5-82.2l0-90.3c0-12.1-9.8-22-21.9-21.9z m-616.9 0l-128.3 0c-12.1 0-22 9.8-22 21.9 0 12.1 9.8 22 22 22l42.2 0 0 128.3c0 12.1 9.8 22 21.9 22 12.1 0 22-9.8 22-22l0-128.3 42.2 0c12.1 0 22-9.8 22-22 0-12.1-9.8-22-22-21.9z m189.9 0l-118.9 0c-12.1 0-22 9.8-22 21.9l0 150.3c0 12.1 9.8 22 22 22l118.9 0c12.1 0 22-9.8 21.9-22 0-12.1-9.8-22-21.9-22l-97 0 0-31.2 84.4 0c12.1 0 22-9.8 22-21.9 0-12.1-9.8-22-22-22l-84.4 0 0-31.2 97 0c12.1 0 22-9.8 21.9-22 0-12.1-9.8-22-21.9-21.9z m-214.5-229.4l-4.1 0.1c-17.1 1.1-28.8 8.5-35.4 18.5-7.7-11.5-22.1-19.6-43.8-18.4l-0.5 0.7c-2.5 4-11.9 21.9 3.3 41.4 3.1 3.3 10.7 12.6 7.6 24.5l-44.1 71.3c-3.6 5.8-2 13.3 3.5 17.2 11.4 8 34.3 19 74 19 39.6 0 62.5-11 73.9-19l1.5-1.3c4.3-4.1 5.2-10.7 2-15.9l-44-71.3 0.3 1.3-0.5-2c-2.4-10.7 3.6-19.2 6.9-23l0.8-0.8c15.3-19.5 5.8-37.3 3.3-41.4l-0.4-0.7-4.3-0.2z m142.8 33.4c-15.1-30-34.7-35.1-44.5-27.3-7.5 6-24.8 29.7-26 31.3-19.1 27.1-18 33.7 6.5 49.1 13.8 8.7 24.9-2.5 29.7-5.8-2.3 14.3-9.3 36.8-19.8 52.6-5.7-4.3-9.9-7.6-12.5-10-3.3-3-8.3-2.8-11.5 0.3-1.5 1.5-2.3 3.5-2.2 5.7 0.1 2.1 1 4.1 2.5 5.5 25.5 23.3 59 36.5 94.7 36.6 35.8 0 69.5-13.2 95-36.6 3.3-3 3.4-8 0.4-11.2-3.2-3.2-8.2-3.3-11.5-0.3-2 1.8-4 3.5-6.1 5.2l-11.2-25c-1.8-4.3-3.8-9.7-6-16.2 1.1-2.7 3.4-5.3 6.7-8.7 2.4-2.4 4.4-4.8 5.9-7.1 7.4-11.7 3.2-18.6 0.9-23.2-5.3-10.8-13.6-7.3-19.6-0.9-7.4 7.8-14.6 11.2-26.2 13.8-9.7 2.2-17.2 1.1-23.4-2.8-8.6-5.3-21.8-25-21.8-25z m277.3-30.5c-32 30.4-1.3 96.5-59.5 124.6-6.4 3.1-11.7-7.1-20.3-7.1-24.3 0.2-70.7 21.6-72.5 32.4-1.5 8.9 18.3 16 76.7 16.1 50.8 0 67.2-77.3 85-77.4 17.8 0 9.5 70.1 7.6 77.4l18.6 0c-1.6-7.3-2.8-29.3-2.7-60.4 0-31.1 5.6-38 10.1-61.5 3.9-20.4-26.3-38.1-43-44.1z m182.4 2.5l-52.1 0c-33.7 0-61.7 26.1-64 59.7l-3.8 53.9c-1.8 25.6 18.5 47.3 44.1 47.4l99.4 0c25.7 0 45.9-21.7 44.2-47.4l-3.8-53.9c-2.4-33.6-30.3-59.7-64-59.7z m-442.6 124c15.7 0 27.7 7.7 32.1 22-10.7 2.8-21.4 4.2-32.3 4.1-16.4 0-22.2-1.5-32.7-4.3 4.2-12.6 18.1-21.8 32.9-21.8z m392.9-79.3l0 1.5c0 13 10.6 23.7 23.6 23.7 13 0 23.7-10.6 23.7-23.7l0-1.5c0-5.8 21-5.8 21 0l0 1.5c0 24.6-20 44.6-44.7 44.6-24.6 0-44.6-20-44.6-44.6l0-1.5c0-5.8 20.9-5.8 21 0z"></path>
+            </svg>
+            <div>
+              <h1>{t('taskindex.temuTitle')}</h1>
+              <h2>{t('taskindex.temuSubtitle')}</h2>
+            </div>
+          </div>
 
-            <div className={styles.header}  onClick={() => navigate('/home')}> 
-              {/* <img src={require('@/assets/logo.webp')} alt="" /> */}
-              <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"  role="img" fill="#fb7701" stroke="none" strokeWidth="18.962962962962962" preserveAspectRatio="none"><title>temu</title><path d="M796.4 0c125.7 0 227.6 101.9 227.6 227.6l0 568.8c0 125.7-101.9 227.6-227.6 227.6l-568.8 0c-125.7 0-227.6-101.9-227.6-227.6l0-568.8c0-125.7 101.9-227.6 227.6-227.6l568.8 0z m-256 531.9l-13.6 0c-12.1 0-22 9.8-21.9 21.9l0 150.5c0 12.1 9.8 22 21.9 22 12.1 0 22-9.8 22-22l0-98.8 37 52.2c7.7 10.8 23.7 10.8 31.5 0l37-52.2 0 98.8c0 12.1 9.8 22 22 22 12.1 0 22-9.8 21.9-22l0-150.5c0-12.1-9.8-22-21.9-21.9l-13.6 0c-5.2 0-10.2 2.5-13.2 6.8l-47.9 72-48-72c-3-4.3-7.9-6.8-13.2-6.8z m340.2 0c-12.1 0-22 9.8-22 21.9l0 91.9c0 28.9-16.3 43.7-43.1 43.6-26.8 0-43.1-15.3-43-44.9l0-90.6c0-12.1-9.8-22-22-21.9-12.1 0-22 9.8-21.9 21.9l0 91.6c0 53.6 32.8 80.9 86.4 80.9 53.6 0 87.6-27 87.5-82.2l0-90.3c0-12.1-9.8-22-21.9-21.9z m-616.9 0l-128.3 0c-12.1 0-22 9.8-22 21.9 0 12.1 9.8 22 22 22l42.2 0 0 128.3c0 12.1 9.8 22 21.9 22 12.1 0 22-9.8 22-22l0-128.3 42.2 0c12.1 0 22-9.8 22-22 0-12.1-9.8-22-22-21.9z m189.9 0l-118.9 0c-12.1 0-22 9.8-22 21.9l0 150.3c0 12.1 9.8 22 22 22l118.9 0c12.1 0 22-9.8 21.9-22 0-12.1-9.8-22-21.9-22l-97 0 0-31.2 84.4 0c12.1 0 22-9.8 22-21.9 0-12.1-9.8-22-22-22l-84.4 0 0-31.2 97 0c12.1 0 22-9.8 21.9-22 0-12.1-9.8-22-21.9-21.9z m-214.5-229.4l-4.1 0.1c-17.1 1.1-28.8 8.5-35.4 18.5-7.7-11.5-22.1-19.6-43.8-18.4l-0.5 0.7c-2.5 4-11.9 21.9 3.3 41.4 3.1 3.3 10.7 12.6 7.6 24.5l-44.1 71.3c-3.6 5.8-2 13.3 3.5 17.2 11.4 8 34.3 19 74 19 39.6 0 62.5-11 73.9-19l1.5-1.3c4.3-4.1 5.2-10.7 2-15.9l-44-71.3 0.3 1.3-0.5-2c-2.4-10.7 3.6-19.2 6.9-23l0.8-0.8c15.3-19.5 5.8-37.3 3.3-41.4l-0.4-0.7-4.3-0.2z m142.8 33.4c-15.1-30-34.7-35.1-44.5-27.3-7.5 6-24.8 29.7-26 31.3-19.1 27.1-18 33.7 6.5 49.1 13.8 8.7 24.9-2.5 29.7-5.8-2.3 14.3-9.3 36.8-19.8 52.6-5.7-4.3-9.9-7.6-12.5-10-3.3-3-8.3-2.8-11.5 0.3-1.5 1.5-2.3 3.5-2.2 5.7 0.1 2.1 1 4.1 2.5 5.5 25.5 23.3 59 36.5 94.7 36.6 35.8 0 69.5-13.2 95-36.6 3.3-3 3.4-8 0.4-11.2-3.2-3.2-8.2-3.3-11.5-0.3-2 1.8-4 3.5-6.1 5.2l-11.2-25c-1.8-4.3-3.8-9.7-6-16.2 1.1-2.7 3.4-5.3 6.7-8.7 2.4-2.4 4.4-4.8 5.9-7.1 7.4-11.7 3.2-18.6 0.9-23.2-5.3-10.8-13.6-7.3-19.6-0.9-7.4 7.8-14.6 11.2-26.2 13.8-9.7 2.2-17.2 1.1-23.4-2.8-8.6-5.3-21.8-25-21.8-25z m277.3-30.5c-32 30.4-1.3 96.5-59.5 124.6-6.4 3.1-11.7-7.1-20.3-7.1-24.3 0.2-70.7 21.6-72.5 32.4-1.5 8.9 18.3 16 76.7 16.1 50.8 0 67.2-77.3 85-77.4 17.8 0 9.5 70.1 7.6 77.4l18.6 0c-1.6-7.3-2.8-29.3-2.7-60.4 0-31.1 5.6-38 10.1-61.5 3.9-20.4-26.3-38.1-43-44.1z m182.4 2.5l-52.1 0c-33.7 0-61.7 26.1-64 59.7l-3.8 53.9c-1.8 25.6 18.5 47.3 44.1 47.4l99.4 0c25.7 0 45.9-21.7 44.2-47.4l-3.8-53.9c-2.4-33.6-30.3-59.7-64-59.7z m-442.6 124c15.7 0 27.7 7.7 32.1 22-10.7 2.8-21.4 4.2-32.3 4.1-16.4 0-22.2-1.5-32.7-4.3 4.2-12.6 18.1-21.8 32.9-21.8z m392.9-79.3l0 1.5c0 13 10.6 23.7 23.6 23.7 13 0 23.7-10.6 23.7-23.7l0-1.5c0-5.8 21-5.8 21 0l0 1.5c0 24.6-20 44.6-44.7 44.6-24.6 0-44.6-20-44.6-44.6l0-1.5c0-5.8 20.9-5.8 21 0z"></path></svg>
-              <div>
-                <h1>Temu: 像亿万富翁一样购物</h1>
-                <h2>在 Temu 上购买超值优惠！</h2>
+          <Card
+            headerStyle={{
+              color: '#1677ff',
+            }}
+            bodyClassName={styles.customBody}
+            title=""
+          >
+            <h2>{t('taskindex.accountBalance')}</h2>
+            <h1>${formatAmount(user?.user?.fakeBalance || 0)}</h1>
+            <Divider />
+            <div className={styles.datas}>
+              <div className={styles.data_item}>
+                <h3>${formatAmount(user?.user?.yesterdayProfit || 0)}</h3>
+                <p>{t('taskindex.yesterdayProfit')}</p>
+              </div>
+              <div className={styles.data_item}>
+                <h3>${formatAmount(user?.user?.totalProfit || 0)}</h3>
+                <p>{t('taskindex.totalProfit')}</p>
+              </div>
+              <div className={styles.data_item}>
+                <h3>{user?.user?.orderCount || 0}</h3>
+                <p>{t('taskindex.orderCount')}</p>
               </div>
             </div>
-            
-            <Card
-                headerStyle={{
-                    color: '#1677ff',
-                }}
-                bodyClassName={styles.customBody}
-                title=''
-            >
-              <h2>Account balance</h2>
-              <h1>${ formatAmount(user?.user?.fakeBalance || 0) }</h1>
-              <Divider />
-              <div className={styles.datas}>
-                <div className={styles.data_item}>
-                  <h3>${ formatAmount(user?.user?.yesterdayProfit || 0) }</h3>
-                  <p>Yesterday earnings</p>
-                </div>
-                <div className={styles.data_item}>
-                  <h3>${ formatAmount(user?.user?.totalProfit || 0) }</h3>
-                  <p>Cumulative income</p>
-                </div>
-                <div className={styles.data_item}>
-                  <h3>{ user?.user?.orderCount || 0 }</h3>
-                  <p>Single snatch times</p>
-                </div>
-              </div>
-            </Card>
+          </Card>
 
-            <br />
+          <br />
+          <HandleCards />
 
-            <HandleCards></HandleCards>
+          <br />
 
-            <br />
-
-            <Card>
-              <Swiper onClick={(type) => handleClick(type)}></Swiper>
-            </Card>
-
-     
-
-            <br />  
-            
-            {/* <Card>
-              <img className={styles.router_banner} onClick={() => navigate('/home')} src={require('@/assets/photo_2025-07-14_17-29-09.jpg')} alt="" />
-            </Card> */}
-
+          <Card>
+            <Swiper onClick={(type) => handleClick(type)} />
+          </Card>
         </PullToRefresh>
 
-        <CusttomTabBar></CusttomTabBar>
-
-        
+        <CusttomTabBar />
       </div>
-
     </div>
   );
 };
 
+function HandleCards() {
+  const { t } = useTranslation(); // 使用 t 函数
 
-function HandleCards () {
   const navigate = useNavigate();
-
 
   return (
     <div className={styles.handleCards}>
-       <Card
-          headerStyle={{
-              color: '#1677ff',
-          }}
-       >
+      <Card headerStyle={{ color: '#1677ff' }}>
         <Grid columns={2} gap={8}>
           <Grid.Item>
-            <div className={styles['grid-demo-item-block']} onClick={() => navigate('/user/wallect')}>
-              <BillOutline  fontSize={22} />
-              <h2>充值</h2>
+            <div
+                className={styles['grid-demo-item-block']}
+                style={{ backgroundColor: '#FB7701', color: '#fff', borderRadius: '8px', padding: '12px' }}
+                onClick={() => navigate('/order/recharge')}
+            >
+              <img src={withdrawIcon} alt="recharge" style={{ width: '30px', height: '30px' }} />
+              <h1>{t('taskindex.recharge')}</h1>
             </div>
           </Grid.Item>
-          <Grid.Item>
-            <div className={styles['grid-demo-item-block']} onClick={() => navigate('/user/wallect')}>
-              <BillOutline  fontSize={22} />
-              <h2>提现</h2>
-            </div>
-          </Grid.Item>
-        </Grid>
-       </Card>
-    </div>
-  )
-}
 
+          {/* 提现按钮 */}
+          <Grid.Item>
+            <div
+                className={styles['grid-demo-item-block']}
+                style={{ backgroundColor: '#FB7701', color: '#fff', borderRadius: '8px', padding: '12px' }}
+                onClick={() => navigate('/order/withdraw')}
+            >
+              <img src={rechargeIcon} alt="withdraw" style={{ width: '30px', height: '30px' }} />
+              <h1>{t('taskindex.withdraw')}</h1>
+            </div>
+          </Grid.Item>
+
+        </Grid>
+      </Card>
+    </div>
+  );
+}
 
 export default Home;

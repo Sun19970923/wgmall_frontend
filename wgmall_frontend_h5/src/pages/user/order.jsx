@@ -1,11 +1,3 @@
-/*
- * @Author: Evan sun1148526297@gmail.com
- * @Date: 2025-07-13 22:09:08
- * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-07-26 02:02:34
- * @FilePath: \wgmall_frontend\wgmall_frontend_h5\src\pages\order\index.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import { PullToRefresh, Button, Toast, Card, Space, TabBar, Tag, Grid, InfiniteScroll, List, Tabs, Empty, Ellipsis } from "antd-mobile";
 import styles from "@/assets/css/order.less";
 import { formatAmount } from '@/utils/utils'
@@ -13,6 +5,7 @@ import { info } from '@/api/user';
 import { useEffect, useState } from "react";
 import { orderAll, pendingAll, refundingAll, processingAll, deliveredAll } from '@/api/product';
 import NavBar from "../../components/NavBar";
+import { useTranslation } from 'react-i18next'; // 导入useTranslation
 
 const getApiUrl = (type) => {
   const apiUrls = {
@@ -22,12 +15,8 @@ const getApiUrl = (type) => {
     3: deliveredAll,
     4: refundingAll,
   };
-
-
   return apiUrls[type] || null; // 如果 type 不在范围内，返回 null
 };
-
-
 
 const OrderList = () => {
   const [user, setUser] = useState({}); // data
@@ -36,29 +25,16 @@ const OrderList = () => {
   const [page, setPage] = useState(0); // data
   const [hasMore, setHasMore] = useState(true)
 
-
-  
+  const { t } = useTranslation(); // 使用t函数获取翻译
 
   const loadMore = async () => {
-
     let userinfo = JSON.parse(localStorage.getItem('userInfo'))
-
-    console.log(activeIndex, 'activeIndex');
     let api = getApiUrl(activeIndex)
-
-    console.log(api, 'api');
-    
-    
-
     let orderData = await api({ buyerName: userinfo.username, page })
-
-    console.log(orderData, 'orderData');
     
     if(orderData.data.content.length == 0){
         return setHasMore(false)
     }
-
-    console.log(orderData, 111);
     
     setList(prev => {
         if([...prev, ...orderData.data.content].length >= orderData.data.totalElements){
@@ -69,20 +45,17 @@ const OrderList = () => {
     })
   }
 
-
   const tabItems = [
-    { key: '0', title: '全部' },
-    { key: '1', title: '待发货' },
-    { key: '2', title: '待收货' },
-    { key: '3', title: '已送达' },
-    { key: '4', title: '退款中' },
+    { key: '0', title: t('order.all') },
+    { key: '1', title: t('order.pending') },
+    { key: '2', title: t('order.processing') },
+    { key: '3', title: t('order.delivered') },
+    { key: '4', title: t('order.refunding') },
   ]
 
   const getUser = async () => {
     let userinfo = JSON.parse(localStorage.getItem('userInfo'))
-    
     let infoData = await info({ userId: userinfo.id })
-
     setUser(infoData.data)
   }
 
@@ -96,12 +69,10 @@ const OrderList = () => {
     getUser()
   }, [])
 
-
-
   return (
     <div className={styles.indexContainer}>
       <div className={styles.indexBody}>
-        <NavBar title={'我的订单'}></NavBar>
+        <NavBar title={t('order.myOrders')} />
         <PullToRefresh
           onRefresh={() => {
             console.log("PullToRefresh");
@@ -121,7 +92,6 @@ const OrderList = () => {
               ))}
             </Tabs>
 
-
             {
                 list.length > 0 ?
                 <List style={{ '--border-top': 'none', '--border-bottom': 'none' }}>
@@ -139,20 +109,18 @@ const OrderList = () => {
                             boxShadow: msg.unread ? '0 2px 8px rgba(60,80,120,0.06)' : 'none',
                         }}
                     >
-
                         <div className={styles.item}>
                             <div>
                                 <img src={baseApi + msg.product.imagePath} alt="" />
                             </div>
 
-
                             <div className={styles.itemRight}>
                                 <Ellipsis direction='end' rows={2} content={msg.product.name} />
                                 <div>
-                                    <p>Order Num: {msg.orderNumber}</p>
-                                    <p>Time: {msg.createdAt}</p>
+                                    <p>{t('order.orderNum')}: {msg.orderNumber}</p>
+                                    <p>{t('order.time')}: {msg.createdAt}</p>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                                        <span>Total Amount: {msg.totalAmount}</span>
+                                        <span>{t('order.totalAmount')}: {msg.totalAmount}</span>
                                         <Tag color='warning' style={{ fontSize: '12px' }}>{msg.status}</Tag>
                                     </div>
                                 </div>
@@ -165,7 +133,7 @@ const OrderList = () => {
                 <Empty
                     style={{ padding: '64px 0' }}
                     imageStyle={{ width: 128 }}
-                    description='暂无数据'
+                    description={t('order.noData')}
                 />
             }
 
@@ -176,6 +144,5 @@ const OrderList = () => {
     </div>
   );
 };
-
 
 export default OrderList;
