@@ -95,7 +95,6 @@ export default {
   "my.loan": "Loan",
   "my.order": "Orders",
   "my.wish": "Wishlist",
-  "my.address": "Address",
   "my.support": "Customer Support",
   "my.openShop": "Open Shop Application",
   "my.loanApply": "Loan Application",
@@ -114,6 +113,7 @@ export default {
   "wallet.noData": "No data",
   "wallet.rechargeRecords": "Add Funds History",
   "wallet.withdrawalRecords": "Withdrawal History",
+  "wallet.freezingBalance": "Frozen Balance",
 
   "withdraw.title": "Withdraw",
   "withdraw.selectMethod": "Select method",
@@ -146,6 +146,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Failed to set address",
   "withdrawp2p.submissionSuccess": "Submission successful",
   "withdrawp2p.submissionFailed": "Task not completed",
+
+  "withdrawwalletset.title": "Wallet Settings",
+  "withdrawwalletset.walletAddress": "Wallet Address",
+  "withdrawwalletset.enterWalletAddress": "Please enter wallet address",
+  "withdrawwalletset.chainType": "Withdrawal Chain",
+  "withdrawwalletset.fundPassword": "Fund Password",
+  "withdrawwalletset.enterFundPassword": "Please enter fund password",
+  "withdrawwalletset.btnSave": "Save",
+  "withdrawwalletset.toast_incompleteBankInfo": "Please enter wallet address",
+  "withdrawwalletset.toast_needFundPassword": "Please enter fund password",
+  "withdrawwalletset.toast_wrongFundPassword": "Incorrect fund password",
+  "withdrawwalletset.toast_saveSuccess": "Saved successfully",
+  "withdrawwalletset.toast_operationFailed": "Failed to save",
 
   "recharge.title": "Add Funds",
   "recharge.selectMethod": "Select method",
@@ -361,6 +374,7 @@ export default {
   "taskuser.loan": "Loan",
   "taskuser.signOut": "Sign out",
   "taskuser.invitationCode": "Invitation code",
+  "taskuser.language": "Language",
 
   "matic.accountBalance": "Balance",
   "matic.cumulativeIncome": "Cumulative income",

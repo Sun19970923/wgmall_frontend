@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "Fără date",
   "wallet.rechargeRecords": "Istoric reîncărcări",
   "wallet.withdrawalRecords": "Istoric retrageri",
+  "wallet.freezingBalance": "Sold înghețat",
 
   // Pagină retragere withdraw.jsx
   "withdraw.title": "Retragere",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Setarea adresei portofelului a eșuat",
   "withdrawp2p.submissionSuccess": "Cererea de retragere a fost trimisă, așteptați procesarea de către suportul clienți",
   "withdrawp2p.submissionFailed": "Nu ați îndeplinit numărul de sarcini necesar, continuați să completați",
+
+  "withdrawwalletset.title": "Setări Portofel",
+  "withdrawwalletset.walletAddress": "Adresă Portofel",
+  "withdrawwalletset.enterWalletAddress": "Vă rugăm să introduceți adresa portofelului",
+  "withdrawwalletset.chainType": "Rețea Retragere",
+  "withdrawwalletset.fundPassword": "Parolă Fonduri",
+  "withdrawwalletset.enterFundPassword": "Vă rugăm să introduceți parola fondurilor",
+  "withdrawwalletset.btnSave": "Salvează",
+  "withdrawwalletset.toast_incompleteBankInfo": "Vă rugăm să introduceți adresa portofelului",
+  "withdrawwalletset.toast_needFundPassword": "Vă rugăm să introduceți parola fondurilor",
+  "withdrawwalletset.toast_wrongFundPassword": "Parola fondurilor este incorectă",
+  "withdrawwalletset.toast_saveSuccess": "Salvat cu succes",
+  "withdrawwalletset.toast_operationFailed": "Salvarea a eșuat",
 
   // Pagină reîncărcare recharge.jsx
   "recharge.title": "Reîncărcare",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "Împrumut",
   "taskuser.signOut": "Deconectare",
   "taskuser.invitationCode": "Cod de invitație",
+  "taskuser.language": "Limbă",
 
   // Pagină Matic matic.jsx
   "matic.accountBalance": "Soldul contului",

@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "データなし",
   "wallet.rechargeRecords": "チャージ記録",
   "wallet.withdrawalRecords": "引き出し記録",
+  "wallet.freezingBalance": "凍結残高",
 
   // 出金ページ withdraw.jsx
   "withdraw.title": "引き出し",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "アドレス設定失敗",
   "withdrawp2p.submissionSuccess": "出金申請を送信しました",
   "withdrawp2p.submissionFailed": "タスク要件を満たしていません",
+
+  "withdrawwalletset.title": "ウォレット設定",
+  "withdrawwalletset.walletAddress": "ウォレットアドレス",
+  "withdrawwalletset.enterWalletAddress": "ウォレットアドレスを入力してください",
+  "withdrawwalletset.chainType": "出金チェーン",
+  "withdrawwalletset.fundPassword": "資金パスワード",
+  "withdrawwalletset.enterFundPassword": "資金パスワードを入力してください",
+  "withdrawwalletset.btnSave": "保存",
+  "withdrawwalletset.toast_incompleteBankInfo": "ウォレットアドレスを入力してください",
+  "withdrawwalletset.toast_needFundPassword": "資金パスワードを入力してください",
+  "withdrawwalletset.toast_wrongFundPassword": "資金パスワードが間違っています",
+  "withdrawwalletset.toast_saveSuccess": "保存に成功しました",
+  "withdrawwalletset.toast_operationFailed": "保存に失敗しました",
 
   // チャージページ recharge.jsx
   "recharge.title": "チャージ",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "ローン",
   "taskuser.signOut": "ログアウト",
   "taskuser.invitationCode": "招待コード",
+  "taskuser.language": "言語",
 
   // Maticページ matic.jsx
   "matic.accountBalance": "残高",

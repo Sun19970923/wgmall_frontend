@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "Nessun dato",
   "wallet.rechargeRecords": "Storico ricariche",
   "wallet.withdrawalRecords": "Storico prelievi",
+  "wallet.freezingBalance": "Saldo congelato",
 
   // Pagina prelievo withdraw.jsx
   "withdraw.title": "Prelievo",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Errore impostazione indirizzo",
   "withdrawp2p.submissionSuccess": "Richiesta inviata",
   "withdrawp2p.submissionFailed": "Non soddisfi i requisiti",
+
+  "withdrawwalletset.title": "Impostazioni Portafoglio",
+  "withdrawwalletset.walletAddress": "Indirizzo del Portafoglio",
+  "withdrawwalletset.enterWalletAddress": "Inserisci l'indirizzo del portafoglio",
+  "withdrawwalletset.chainType": "Rete di Prelievo",
+  "withdrawwalletset.fundPassword": "Password dei Fondi",
+  "withdrawwalletset.enterFundPassword": "Inserisci la password dei fondi",
+  "withdrawwalletset.btnSave": "Salva",
+  "withdrawwalletset.toast_incompleteBankInfo": "Inserisci l'indirizzo del portafoglio",
+  "withdrawwalletset.toast_needFundPassword": "Inserisci la password dei fondi",
+  "withdrawwalletset.toast_wrongFundPassword": "Password dei fondi errata",
+  "withdrawwalletset.toast_saveSuccess": "Salvato con successo",
+  "withdrawwalletset.toast_operationFailed": "Salvataggio fallito",
 
   // Pagina ricarica recharge.jsx
   "recharge.title": "Ricarica",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "Prestito",
   "taskuser.signOut": "Esci",
   "taskuser.invitationCode": "Codice invito",
+  "taskuser.language": "Lingua",
 
   // Pagina Matic matic.jsx
   "matic.accountBalance": "Saldo",

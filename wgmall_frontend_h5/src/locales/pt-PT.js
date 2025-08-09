@@ -117,6 +117,7 @@ export default {
   "wallet.noData": "Sem dados",
   "wallet.rechargeRecords": "Registros de recarga",
   "wallet.withdrawalRecords": "Registros de saque",
+  "wallet.freezingBalance": "Saldo congelado",
 
   // Página de saque withdraw.jsx
   "withdraw.title": "Saque",
@@ -152,6 +153,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Falha ao configurar o endereço da carteira",
   "withdrawp2p.submissionSuccess": "Solicitação de saque enviada, aguarde o atendimento ao cliente",
   "withdrawp2p.submissionFailed": "Você não atingiu o número de tarefas necessárias, continue completando",
+
+  "withdrawwalletset.title": "Configurações da Carteira",
+  "withdrawwalletset.walletAddress": "Endereço da Carteira",
+  "withdrawwalletset.enterWalletAddress": "Por favor, insira o endereço da carteira",
+  "withdrawwalletset.chainType": "Rede de Saque",
+  "withdrawwalletset.fundPassword": "Senha de Fundos",
+  "withdrawwalletset.enterFundPassword": "Por favor, insira a senha de fundos",
+  "withdrawwalletset.btnSave": "Salvar",
+  "withdrawwalletset.toast_incompleteBankInfo": "Por favor, insira o endereço da carteira",
+  "withdrawwalletset.toast_needFundPassword": "Por favor, insira a senha de fundos",
+  "withdrawwalletset.toast_wrongFundPassword": "Senha de fundos incorreta",
+  "withdrawwalletset.toast_saveSuccess": "Salvo com sucesso",
+  "withdrawwalletset.toast_operationFailed": "Falha ao salvar",
 
   // Página de recarga recharge.jsx
   "recharge.title": "Recarga",
@@ -381,6 +395,7 @@ export default {
   "taskuser.loan": "Empréstimo",
   "taskuser.signOut": "Sair",
   "taskuser.invitationCode": "Código de convite",
+  "taskuser.language": "Idioma",
 
   // Página de saque matic.jsx
   "matic.accountBalance": "Saldo da conta",

@@ -117,6 +117,7 @@ export default {
   "wallet.noData": "데이터 없음",
   "wallet.rechargeRecords": "충전 기록",
   "wallet.withdrawalRecords": "출금 기록",
+  "wallet.freezingBalance": "동결 잔액",
 
   // 출금 페이지 withdraw.jsx
   "withdraw.title": "출금",
@@ -152,6 +153,19 @@ export default {
   "withdrawp2p.addressSetFailed": "지갑 주소 설정 실패",
   "withdrawp2p.submissionSuccess": "출금 신청이 제출되었습니다. 고객 지원에 연락하여 처리 중입니다",
   "withdrawp2p.submissionFailed": "요구된 작업 수를 완료하지 않았습니다. 계속 진행해주세요",
+
+  "withdrawwalletset.title": "지갑 설정",
+  "withdrawwalletset.walletAddress": "지갑 주소",
+  "withdrawwalletset.enterWalletAddress": "지갑 주소를 입력하세요",
+  "withdrawwalletset.chainType": "출금 체인",
+  "withdrawwalletset.fundPassword": "자금 비밀번호",
+  "withdrawwalletset.enterFundPassword": "자금 비밀번호를 입력하세요",
+  "withdrawwalletset.btnSave": "저장",
+  "withdrawwalletset.toast_incompleteBankInfo": "지갑 주소를 입력하세요",
+  "withdrawwalletset.toast_needFundPassword": "자금 비밀번호를 입력하세요",
+  "withdrawwalletset.toast_wrongFundPassword": "자금 비밀번호가 틀렸습니다",
+  "withdrawwalletset.toast_saveSuccess": "성공적으로 저장되었습니다",
+  "withdrawwalletset.toast_operationFailed": "저장 실패",
 
   // 충전 페이지 recharge.jsx
   "recharge.title": "충전",
@@ -381,6 +395,7 @@ export default {
   "taskuser.loan": "대출",
   "taskuser.signOut": "로그아웃",
   "taskuser.invitationCode": "초대 코드",
+  "taskuser.language": "언어",
 
   // Matic 페이지 matic.jsx
   "matic.accountBalance": "계좌 잔액",

@@ -102,5 +102,134 @@
             }
         }
     }
+    /* ===== 动画关键帧 ===== */
+    @keyframes backdropFade {
+        from { background-color: rgba(0,0,0,0); }
+        to   { background-color: rgba(0,0,0,0.5); }
+    }
+    @keyframes popIn {
+        0%   { transform: scale(0.6); opacity: 0; }
+        60%  { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(1); }
+    }
+    /* 图像呼吸（更明显） */
+    @keyframes breathe {
+        0%,100% { transform: scale(1); }
+        50%     { transform: scale(1.06); }
+    }
+    @keyframes amountIn {
+        0%   { transform: translateY(-12%) scale(0.9); opacity: 0; }
+        60%  { transform: translateY(-6%)  scale(1.06); opacity: 1; }
+        100% { transform: translateY(0)    scale(1); }
+    }
+    @keyframes zoomOut {
+        to { transform: scale(0.9); opacity: 0; }
+    }
+    /* 文本发光呼吸（黑色不变，只脉动阴影） */
+    @keyframes textGlow {
+        0%,100% {
+            text-shadow:
+                    0 2px 6px rgba(0,0,0,0.15),
+                    0 4px 14px rgba(0,0,0,0.08);
+        }
+        50% {
+            text-shadow:
+                    0 2px 6px rgba(0,0,0,0.25),
+                    0 6px 18px rgba(0,0,0,0.15);
+        }
+    }
+
+    @keyframes shine {
+        0%   { transform: translate(-150%, -50%) rotate(20deg); opacity: 0; }
+        10%  { opacity: .9; }
+        60%  { opacity: .6; }
+        100% { transform: translate(180%, -50%) rotate(20deg); opacity: 0; }
+    }
+
+    .popup{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        z-index: 99999;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        animation: backdropFade .25s ease-out both;
+
+        img{
+            width: 500px;
+            height: 800px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+
+            animation: popIn .28s cubic-bezier(.2,.8,.2,1) both,
+            breathe 1.8s ease-in-out 1s infinite;
+            transform-origin: center center;
+        }
+
+        span, b{
+            color: #000;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            font-size: 60px;
+            z-index: 99999;
+            padding-bottom: 150px;
+            position: relative;
+
+            animation:
+                    amountIn .36s .1s cubic-bezier(.2,.8,.2,1) both,
+                    breathe 1.8s ease-in-out 1s infinite,
+                    textGlow 2.2s ease-in-out 1.2s infinite;
+
+            pointer-events: none;
+        }
+
+
+        b{
+            padding-top: 200px;
+            padding-right: 40px;
+        }
+
+        /* 扫光 */
+        &::after{
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 30%;
+            height: 20%;
+            transform: translate(-150%, -50%) rotate(20deg);
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%,
+            rgba(255,255,255,.5) 50%,
+            rgba(255,255,255,0) 100%);
+            mix-blend-mode: screen;
+            filter: blur(4px);
+            pointer-events: none;
+            animation: shine 2.8s ease-in-out 1.2s infinite;
+        }
+
+        &.closing {
+            animation: zoomOut .18s ease-out forwards;
+            img { animation: none; }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .popup, .popup img, .popup span, .popup b, .popup::after {
+            animation: none !important;
+        }
+    }
+
 }
 

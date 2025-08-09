@@ -9,7 +9,7 @@
 import axios from "axios";
 import { Toast } from 'antd-mobile'
 import { useNavigate } from "react-router-dom";
-// import { history } from 'umi';
+import { history } from 'umi';
 
 // create an axios instance
 const service = axios.create({
@@ -77,7 +77,7 @@ service.interceptors.response.use(
         })
         
         // 跳转到登录页
-        // history.push('/login');
+        history.push('/login');
         return Promise.resolve(res || "error");
       } else {
         return Promise.reject(res || "error");
@@ -97,7 +97,7 @@ service.interceptors.response.use(
 
       setTimeout(() => {
         // 跳转到登录页
-        // history.push('/login');
+       history.push('/login');
       }, 1000);
     }
 

@@ -4,7 +4,7 @@ import component from "element-plus/es/components/tree-select/src/tree-select-op
  * @Author: Evan sun1148526297@gmail.com
  * @Date: 2025-07-09 15:03:35
  * @LastEditors: Evan sun1148526297@gmail.com
- * @LastEditTime: 2025-08-01 19:46:33
+ * @LastEditTime: 2025-08-10 03:03:18
  * @FilePath: \wgmall_frontend\wgmall_frontend_h5\src\routes\index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -93,6 +93,7 @@ export default {
                 {path: '/netWork404', component: 'netWork404'},
                 {path: '/searchPage', component: 'searchPage'},
                 {path: '/LanguageSwitchPage', component: 'LanguageSwitchPage'},
+                {path: '/shopPage', component: 'shopPage'},
                 {
                     path: '/order',
                     component: '/order/index',
@@ -128,6 +129,10 @@ export default {
                         {
                             path: '/order/withdrawP2P',
                             component: './order/withdrawP2P',
+                        },
+                        {
+                            path: 'order/withdrawWalletSet',
+                            component: './order/withdrawWalletSet',
                         }
                     ],
                 },

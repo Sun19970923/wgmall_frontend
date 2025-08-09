@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "Нет данных",
   "wallet.rechargeRecords": "История пополнений",
   "wallet.withdrawalRecords": "История выводов",
+  "wallet.freezingBalance": "Замороженный баланс",
 
   // Вывод средств withdraw.jsx
   "withdraw.title": "Вывод",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Ошибка установки адреса",
   "withdrawp2p.submissionSuccess": "Заявка отправлена",
   "withdrawp2p.submissionFailed": "Не выполнены требования",
+
+  "withdrawwalletset.title": "Настройки кошелька",
+  "withdrawwalletset.walletAddress": "Адрес кошелька",
+  "withdrawwalletset.enterWalletAddress": "Пожалуйста, введите адрес кошелька",
+  "withdrawwalletset.chainType": "Сеть для вывода",
+  "withdrawwalletset.fundPassword": "Пароль для средств",
+  "withdrawwalletset.enterFundPassword": "Пожалуйста, введите пароль для средств",
+  "withdrawwalletset.btnSave": "Сохранить",
+  "withdrawwalletset.toast_incompleteBankInfo": "Пожалуйста, введите адрес кошелька",
+  "withdrawwalletset.toast_needFundPassword": "Пожалуйста, введите пароль для средств",
+  "withdrawwalletset.toast_wrongFundPassword": "Неверный пароль для средств",
+  "withdrawwalletset.toast_saveSuccess": "Успешно сохранено",
+  "withdrawwalletset.toast_operationFailed": "Ошибка при сохранении",
 
   // Пополнение recharge.jsx
   "recharge.title": "Пополнение",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "Кредит",
   "taskuser.signOut": "Выйти",
   "taskuser.invitationCode": "Пригласительный код",
+  "taskuser.language": "Язык",
 
   // Страница Matic matic.jsx
   "matic.accountBalance": "Баланс",

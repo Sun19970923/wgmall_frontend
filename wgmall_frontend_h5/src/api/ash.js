@@ -86,3 +86,18 @@ export const submitBankWithdrawalRecord = (username, amount, fundPassword, bankN
     address: bankInfo
   }).then(response => response.data);
 };
+
+/**
+ * 按店铺名模糊分页查店铺及其商品
+ * 后端规则：shop.name == product.uploader
+ *
+ * @param {string} nameLike  店铺名关键字
+ * @param {number} page      页码（从0开始）
+ * @param {number} size      每页数量
+ * @returns {Promise<object>} Spring Data Page<ShopWithProductsDTO>
+ */
+export const searchShopsByNameWithProducts = (nameLike, page = 0, size = 10) => {
+  return service.get(`/shop/search-with-products`, {
+    params: { name: nameLike, page, size } // ✅ 参数名改成和后端匹配
+  }).then(res => res.data);
+};

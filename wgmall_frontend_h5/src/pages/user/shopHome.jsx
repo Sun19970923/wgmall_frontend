@@ -211,7 +211,7 @@ const ShopHome = () => {
                     borderRadius: 16,
                     boxSizing: 'border-box',
                   }}
-                  src={require('@/assets/photo_2025-07-14_17-29-09.jpg')}
+                  src={require('@/assets/banner8.png')}
                   alt=""
               />
             </div>

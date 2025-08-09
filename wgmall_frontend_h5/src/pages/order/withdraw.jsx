@@ -68,38 +68,44 @@ const User = () => {
   const handleSelect2 = async (key) => {
     const storedUser = JSON.parse(localStorage.getItem('userInfo'));
     if (!storedUser || !storedUser.id) {
-      Toast.show({ content: '请先登录' });
+      Toast.show({ content: 'login' });
       navigate('/login');
       return;
     }
 
-    if (key === 'P2P') {
-      navigate('/order/withdrawP2P');
-    }
-    else if (key === 'visa') {
-      try {
-        const res = await getUserInfo(storedUser.id); // ✅ 实时获取用户信息
-        const user = res.data;
+    try {
+      const res = await getUserInfo(storedUser.id); // ✅ 实时获取用户信息
+      const user = res.data;
+
+      if (key === 'P2P') {
+        // ✅ 检查是否设置了 Tron 钱包地址
+        if (!user.tronWalletAddress) {
+          Toast.show({ content: t('withdraw.pleaseSetWallet') }); // 可选提示语
+          navigate('/order/withdrawWalletSet'); // ✅ 跳转到钱包设置页面
+        } else {
+          navigate('/order/withdrawP2P'); // ✅ 进入 P2P 提现页
+        }
+      } else if (key === 'visa') {
         if (user.useBank === 1) {
-          navigate('/order/withdrawBank'); // ✅ 跳转银行卡提现页
+          navigate('/order/withdrawBank');
         } else {
           Toast.show({
             icon: 'fail',
             content: t('withdraw.regionNotSupported'),
           });
         }
-      } catch (err) {
-        Toast.show({ content: 'Info failed' });
-        navigate('/login');
+      } else {
+        Toast.show({
+          icon: 'fail',
+          content: t('withdraw.regionNotSupported'),
+        });
       }
-    }
-    else {
-      Toast.show({
-        icon: 'fail',
-        content: t('withdraw.regionNotSupported'),
-      });
+    } catch (err) {
+      Toast.show({ content: '信息获取失败，请重新登录' });
+      navigate('/login');
     }
   };
+
 
   useEffect(() => {
     let userinfo = JSON.parse(localStorage.getItem('userInfo'));

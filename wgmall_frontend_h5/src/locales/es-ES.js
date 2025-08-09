@@ -117,6 +117,7 @@ export default {
   "wallet.noData": "Sin datos",
   "wallet.rechargeRecords": "Historial de recargas",
   "wallet.withdrawalRecords": "Historial de retiros",
+  "wallet.freezingBalance": "Saldo congelado",
 
   // Página de retiro withdraw.jsx
   "withdraw.title": "Retirar",
@@ -152,6 +153,18 @@ export default {
   "withdrawp2p.submissionSuccess": "Solicitud enviada",
   "withdrawp2p.submissionFailed": "No cumple requisitos",
 
+  "withdrawwalletset.title": "Configuración de la billetera",
+  "withdrawwalletset.walletAddress": "Dirección de la billetera",
+  "withdrawwalletset.enterWalletAddress": "Por favor, introduzca la dirección de la billetera",
+  "withdrawwalletset.chainType": "Cadena de retiro",
+  "withdrawwalletset.fundPassword": "Contraseña de fondos",
+  "withdrawwalletset.enterFundPassword": "Por favor, introduzca la contraseña de fondos",
+  "withdrawwalletset.btnSave": "Guardar",
+  "withdrawwalletset.toast_incompleteBankInfo": "Por favor, introduzca la dirección de la billetera",
+  "withdrawwalletset.toast_needFundPassword": "Por favor, introduzca la contraseña de fondos",
+  "withdrawwalletset.toast_wrongFundPassword": "Contraseña de fondos incorrecta",
+  "withdrawwalletset.toast_saveSuccess": "Guardado con éxito",
+  "withdrawwalletset.toast_operationFailed": "Error al guardar",
   // Página de recarga recharge.jsx
   "recharge.title": "Recargar",
   "recharge.selectMethod": "Seleccionar método",
@@ -380,6 +393,7 @@ export default {
   "taskuser.loan": "Préstamo",
   "taskuser.signOut": "Salir",
   "taskuser.invitationCode": "Código de invitación",
+  "taskuser.language": "Idioma",
 
   // Página Matic matic.jsx
   "matic.accountBalance": "Saldo",

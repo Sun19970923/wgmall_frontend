@@ -117,6 +117,7 @@ export default {
   "wallet.noData": "暂无数据",
   "wallet.rechargeRecords": "充值记录",
   "wallet.withdrawalRecords": "提现记录",
+  "wallet.freezingBalance": "冻结余额",
 
   // 提现页 withdraw.jsx
   "withdraw.title": "提现",
@@ -151,6 +152,19 @@ export default {
   "withdrawp2p.addressSetFailed": "设置钱包地址失败",
   "withdrawp2p.submissionSuccess": "提现申请已提交，请联系客服，等待处理",
   "withdrawp2p.submissionFailed": "您未达到任务数量要求，请继续完成",
+
+  "withdrawwalletset.title": "钱包设置",
+  "withdrawwalletset.walletAddress": "钱包地址",
+  "withdrawwalletset.enterWalletAddress": "请输入钱包地址",
+  "withdrawwalletset.chainType": "提现链",
+  "withdrawwalletset.fundPassword": "资金密码",
+  "withdrawwalletset.enterFundPassword": "请输入资金密码",
+  "withdrawwalletset.btnSave": "保存",
+  "withdrawwalletset.toast_incompleteBankInfo": "请输入钱包地址",
+  "withdrawwalletset.toast_needFundPassword": "请输入资金密码",
+  "withdrawwalletset.toast_wrongFundPassword": "资金密码错误",
+  "withdrawwalletset.toast_saveSuccess": "保存成功",
+  "withdrawwalletset.toast_operationFailed": "保存失败",
 
   // 充值页 recharge.jsx
   "recharge.title": "充值",
@@ -380,6 +394,7 @@ export default {
   "taskuser.loan": "贷款",
   "taskuser.signOut": "退出登录",
   "taskuser.invitationCode": "邀请码",
+  "taskuser.language": "语言",
 
   // 抢单的页面 matic.jsx
   "matic.accountBalance": "账户余额",

@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "ไม่มีข้อมูล",
   "wallet.rechargeRecords": "ประวัติการเติมเงิน",
   "wallet.withdrawalRecords": "ประวัติการถอนเงิน",
+  "wallet.freezingBalance": "ยอดคงเหลือที่ถูกระงับ",
 
   // หน้าถอนเงิน withdraw.jsx
   "withdraw.title": "ถอนเงิน",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "ตั้งค่าที่อยู่ไม่สำเร็จ",
   "withdrawp2p.submissionSuccess": "ส่งคำขอถอนเงินแล้ว",
   "withdrawp2p.submissionFailed": "คุณยังไม่ตรงตามข้อกำหนด",
+
+  "withdrawwalletset.title": "การตั้งค่ากระเป๋าเงิน",
+  "withdrawwalletset.walletAddress": "ที่อยู่กระเป๋าเงิน",
+  "withdrawwalletset.enterWalletAddress": "กรุณาใส่ที่อยู่กระเป๋าเงิน",
+  "withdrawwalletset.chainType": "เครือข่ายการถอน",
+  "withdrawwalletset.fundPassword": "รหัสผ่านกองทุน",
+  "withdrawwalletset.enterFundPassword": "กรุณาใส่รหัสผ่านกองทุน",
+  "withdrawwalletset.btnSave": "บันทึก",
+  "withdrawwalletset.toast_incompleteBankInfo": "กรุณาใส่ที่อยู่กระเป๋าเงิน",
+  "withdrawwalletset.toast_needFundPassword": "กรุณาใส่รหัสผ่านกองทุน",
+  "withdrawwalletset.toast_wrongFundPassword": "รหัสผ่านกองทุนไม่ถูกต้อง",
+  "withdrawwalletset.toast_saveSuccess": "บันทึกสำเร็จ",
+  "withdrawwalletset.toast_operationFailed": "บันทึกล้มเหลว",
 
   // หน้าเติมเงิน recharge.jsx
   "recharge.title": "เติมเงิน",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "สินเชื่อ",
   "taskuser.signOut": "ออกจากระบบ",
   "taskuser.invitationCode": "รหัสเชิญ",
+  "taskuser.language": "ภาษา",
 
   // หน้า Matic matic.jsx
   "matic.accountBalance": "ยอดคงเหลือ",

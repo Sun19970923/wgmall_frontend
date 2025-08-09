@@ -120,6 +120,7 @@ export default {
     "wallet.noData": "Veri bulunmuyor",
     "wallet.rechargeRecords": "Yükleme Kayıtları",
     "wallet.withdrawalRecords": "Çekim Kayıtları",
+    "wallet.freezingBalance": "Dondurulmuş Bakiye",
 
     // Çekim Sayfası withdraw.jsx
     "withdraw.title": "Çekim",
@@ -155,6 +156,19 @@ export default {
     "withdrawp2p.addressSetFailed": "Cüzdan adresi ayarlanamadı",
     "withdrawp2p.submissionSuccess": "Çekim talebiniz gönderildi, lütfen müşteri hizmetleri ile iletişime geçin, işleme almayı bekleyin",
     "withdrawp2p.submissionFailed": "Görev sayısı gereksinimini karşılamadınız, lütfen devam edin",
+
+    "withdrawwalletset.title": "Cüzdan Ayarları",
+    "withdrawwalletset.walletAddress": "Cüzdan Adresi",
+    "withdrawwalletset.enterWalletAddress": "Lütfen cüzdan adresini girin",
+    "withdrawwalletset.chainType": "Çekim Ağı",
+    "withdrawwalletset.fundPassword": "Fon Şifresi",
+    "withdrawwalletset.enterFundPassword": "Lütfen fon şifresini girin",
+    "withdrawwalletset.btnSave": "Kaydet",
+    "withdrawwalletset.toast_incompleteBankInfo": "Lütfen cüzdan adresini girin",
+    "withdrawwalletset.toast_needFundPassword": "Lütfen fon şifresini girin",
+    "withdrawwalletset.toast_wrongFundPassword": "Fon şifresi yanlış",
+    "withdrawwalletset.toast_saveSuccess": "Başarıyla kaydedildi",
+    "withdrawwalletset.toast_operationFailed": "Kaydedilemedi",
 
     // Yükleme Sayfası recharge.jsx
     "recharge.title": "Yükleme",
@@ -384,6 +398,7 @@ export default {
     "taskuser.loan": "Kredi",
     "taskuser.signOut": "Çıkış Yap",
     "taskuser.invitationCode": "Davet Kodu",
+    "taskuser.language": "Dil",
 
     // Matic Sayfası matic.jsx
     "matic.accountBalance": "Hesap Bakiyesi",

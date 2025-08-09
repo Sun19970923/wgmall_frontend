@@ -1,167 +1,170 @@
-import { Form, Input, Button, Card } from 'antd';
-import { Toast } from 'antd-mobile';
-import { useEffect, useState } from "react";
-import { getCaptcha, getCaptchaMock } from "@/api/user.js";
-import { useNavigate } from "react-router-dom";
+import {Form, Input, Button, Card} from 'antd';
+import {Toast} from 'antd-mobile';
+import {useEffect, useState} from "react";
+import {getCaptcha, getCaptchaMock} from "@/api/user.js";
+import {useNavigate} from "react-router-dom";
 import styles from "@/assets/css/login.less";
 import logo from "../assets/logo.webp";
 import iogin1 from "../assets/login_1.webp";
 import iogin2 from "../assets/login_2.webp";
-import { register, getIP, login } from '@/api/user';
-import { showLoading, hideLoading } from '@/utils/loading';
-import { useLocation } from 'umi';
+import {register, getIP, login} from '@/api/user';
+import {showLoading, hideLoading} from '@/utils/loading';
+import {useLocation} from 'umi';
 import LoadingMask from '../components/Loading';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 
 export default function LoginPage() {
-  const { t } = useTranslation(); // 获取t函数
+    const {t} = useTranslation(); // 获取t函数
 
-  const getCaptchaFunc = () => {
-    getCaptcha();
-    getCaptchaMock();
-  };
-  const location = useLocation();
+    const getCaptchaFunc = () => {
+        getCaptcha();
+        getCaptchaMock();
+    };
+    const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
-  const redirect = queryParams.get('redirect');
-
-
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
-  const [loading, setLoading] = useState(false);
-
-  const onFinish = async (values) => {
-
-    if (isLogin) {
-      if (!values.username || !values.password) {
-        return Toast.show({
-          icon: 'fail',
-          content: t('login.content'), // 使用t进行翻译
-        })
-      }
-    } else {
-      if (!values.password || !values.fundpassword || !values.username || !values.phone || !values.invitecode) {
-        return Toast.show({
-          icon: 'fail',
-          content: t('login.content'), // 使用t进行翻译
-        })
-      }
-    }
+    const queryParams = new URLSearchParams(location.search);
+    const redirect = queryParams.get('redirect');
 
 
-    setLoading(true)
+    const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-    if (!isLogin) {
-      fetch('https://api.ipify.org?format=json')
-        .then(response => response.json())
-        .then(data => getLogin({ ...values, ip: data.ip }))
-        .catch(error => {
-          Toast.show({
-            icon: 'fail',
-            content: error,
-          })
-          setLoading(false)
-        });
-      return
-    }
+    const onFinish = async (values) => {
 
-    getLogin({ ...values })
-  };
-
-  const getLogin = async (registerData) => {
-
-    let loginData = {
-      username_or_phone: registerData.username,
-      password: registerData.password,
-    }
-
-    let res = isLogin ? await login(loginData) : await register(registerData);
-    setLoading(false)
-    console.log(res, 'res');
-    if (res.code == 200) {
-
-      Toast.show({
-        icon: 'success',
-        content: res.message,
-      })
-      setTimeout(() => {
-        navigate('/home')
-      }, 1500);
-    }
-  }
-
-  useEffect(() => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('username')
-  }, [])
-
-
-  return (
-    <>
-      <LoadingMask visible={loading} />
-
-      <div className={styles.header}>
-        <div className={styles.logoChunk}>
-          <img src={logo} alt="" />
-          <span>HK</span>
-        </div>
-        <div className={styles.tips}>
-          {t('login.cyptro')} {/* 使用t进行翻译 */}
-        </div>
-        <Button onClick={() => navigate('/LanguageSwitchPage')} className={styles.Language}>
-          {t('login.language')} {/* 使用t进行翻译 */}
-        </Button>
-      </div>
-
-      <div className={styles.content}>
-        <div className={styles.icons}>
-          <div className={styles.icon_item}>
-            <img src={iogin1} alt="" />
-            <span>{t('login.nofee')}</span> {/* 使用t进行翻译 */}
-            <span>{t('login.saleoff')}</span> {/* 使用t进行翻译 */}
-          </div>
-          <div className={styles.icon_item}>
-            <img src={iogin2} alt="" />
-            <span>{t('login.refund')}</span> {/* 使用t进行翻译 */}
-            <span>{t('login.nintyday')}</span> {/* 使用t进行翻译 */}
-          </div>
-        </div>
-
-        <div className={styles.from}>
-          <Form layout="horizontal" onFinish={onFinish}>
-            <Form.Item label={t('login.username')} name="username">
-              <Input placeholder={t('login.username')} />
-            </Form.Item>
-            <Form.Item label={t('login.password')} name="password">
-              <Input placeholder={t('login.password')} type='password' />
-            </Form.Item>
-            {
-              !isLogin &&
-              <>
-                <Form.Item label={t('login.phone')} name="phone">
-                  <Input placeholder={t('login.phone')} />
-                </Form.Item>
-                <Form.Item label={t('login.fundpassword')} name="fundpassword">
-                  <Input placeholder={t('login.fundpassword')} type='password' />
-                </Form.Item>
-                <Form.Item label={t('login.invitecode')} name="invitecode">
-                  <Input placeholder={t('login.invitecode')} />
-                </Form.Item>
-              </>
+        if (isLogin) {
+            if (!values.username || !values.password) {
+                return Toast.show({
+                    icon: 'fail',
+                    content: t('login.content'), // 使用t进行翻译
+                })
             }
-            <br />
-            <br />
-<Form.Item>
-  <Button type="primary" htmlType="submit" className={styles.submit}>
-    {isLogin ? t('login.submit') : t('login.register')} {/* Change text based on isLogin */}
-  </Button>
-</Form.Item>
-            <span className={styles.switch} onClick={() => setIsLogin(!isLogin)}>{t(isLogin ? 'login.register' : 'login.gologin')}</span> {/* 使用t进行翻译 */}
-          </Form>
-        </div>
-      </div>
-    </>
-  );
+        } else {
+            if (!values.password || !values.fundpassword || !values.username || !values.phone || !values.invitecode) {
+                return Toast.show({
+                    icon: 'fail',
+                    content: t('login.content'), // 使用t进行翻译
+                })
+            }
+        }
+
+
+        setLoading(true)
+
+        if (!isLogin) {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => getLogin({...values, ip: data.ip}))
+                .catch(error => {
+                    Toast.show({
+                        icon: 'fail',
+                        content: error,
+                    })
+                    setLoading(false)
+                });
+            return
+        }
+
+        getLogin({...values})
+    };
+
+    const getLogin = async (registerData) => {
+
+        let loginData = {
+            username_or_phone: registerData.username,
+            password: registerData.password,
+        }
+
+        let res = isLogin ? await login(loginData) : await register(registerData);
+        setLoading(false)
+        console.log(res, 'res');
+        if (res.code == 200) {
+
+            sessionStorage.setItem('showPosters', 'true');
+
+            Toast.show({
+                icon: 'success',
+                content: res.message,
+            })
+            setTimeout(() => {
+                navigate('/home')
+            }, 1500);
+        }
+    }
+
+    useEffect(() => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('userInfo')
+        localStorage.removeItem('username')
+    }, [])
+
+
+    return (
+        <>
+            <LoadingMask visible={loading}/>
+
+            <div className={styles.header}>
+                <div className={styles.logoChunk}>
+                    <img src={logo} alt=""/>
+                    <span>HK</span>
+                </div>
+                <div className={styles.tips}>
+                    {t('login.cyptro')} {/* 使用t进行翻译 */}
+                </div>
+                <Button onClick={() => navigate('/LanguageSwitchPage')} className={styles.Language}>
+                    {t('login.language')} {/* 使用t进行翻译 */}
+                </Button>
+            </div>
+
+            <div className={styles.content}>
+                <div className={styles.icons}>
+                    <div className={styles.icon_item}>
+                        <img src={iogin1} alt=""/>
+                        <span>{t('login.nofee')}</span> {/* 使用t进行翻译 */}
+                        <span>{t('login.saleoff')}</span> {/* 使用t进行翻译 */}
+                    </div>
+                    <div className={styles.icon_item}>
+                        <img src={iogin2} alt=""/>
+                        <span>{t('login.refund')}</span> {/* 使用t进行翻译 */}
+                        <span>{t('login.nintyday')}</span> {/* 使用t进行翻译 */}
+                    </div>
+                </div>
+
+                <div className={styles.from}>
+                    <Form layout="horizontal" onFinish={onFinish}>
+                        <Form.Item label={t('login.username')} name="username">
+                            <Input placeholder={t('login.username')}/>
+                        </Form.Item>
+                        <Form.Item label={t('login.password')} name="password">
+                            <Input placeholder={t('login.password')} type='password'/>
+                        </Form.Item>
+                        {
+                            !isLogin &&
+                            <>
+                                <Form.Item label={t('login.phone')} name="phone">
+                                    <Input placeholder={t('login.phone')}/>
+                                </Form.Item>
+                                <Form.Item label={t('login.fundpassword')} name="fundpassword">
+                                    <Input placeholder={t('login.fundpassword')} type='password'/>
+                                </Form.Item>
+                                <Form.Item label={t('login.invitecode')} name="invitecode">
+                                    <Input placeholder={t('login.invitecode')}/>
+                                </Form.Item>
+                            </>
+                        }
+                        <br/>
+                        <br/>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className={styles.submit}>
+                                {isLogin ? t('login.submit') : t('login.register')} {/* Change text based on isLogin */}
+                            </Button>
+                        </Form.Item>
+                        <span className={styles.switch}
+                              onClick={() => setIsLogin(!isLogin)}>{t(isLogin ? 'login.register' : 'login.gologin')}</span> {/* 使用t进行翻译 */}
+                    </Form>
+                </div>
+            </div>
+        </>
+    );
 }

@@ -33,8 +33,40 @@
   flex: 0;
   border-bottom: solid 1px var(--adm-color-border);
 }
+/* ===== 动画关键帧 ===== */
+@keyframes breathe {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.06); }
+}
 
-.popup{
+@keyframes textGlow {
+  0%,100% {
+    text-shadow:
+            0 2px 6px rgba(0,0,0,0.15),
+            0 4px 14px rgba(0,0,0,0.08);
+  }
+  50% {
+    text-shadow:
+            0 2px 6px rgba(0,0,0,0.25),
+            0 6px 18px rgba(0,0,0,0.15);
+  }
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes shine {
+  0%   { transform: translate(-150%, -50%) rotate(20deg); opacity: 0; }
+  10%  { opacity: .9; }
+  60%  { opacity: .6; }
+  100% { transform: translate(180%, -50%) rotate(20deg); opacity: 0; }
+}
+
+/* ===== 弹窗样式 ===== */
+.popup {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -45,7 +77,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
+
+  /* 扫光效果容器 */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30%;
+    height: 20%;
+    transform: translate(-150%, -50%) rotate(20deg);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.5) 50%,
+    rgba(255,255,255,0) 100%);
+    mix-blend-mode: screen;
+    filter: blur(4px);
+    pointer-events: none;
+    animation: shine 2.8s ease-in-out 1.2s infinite;
+  }
+
+  img {
     width: 500px;
     height: 800px;
     left: 0;
@@ -54,8 +105,14 @@
     top: 0;
     bottom: 0;
     margin: auto;
+
+    /* 弹入 + 呼吸 */
+    animation: popIn .28s cubic-bezier(.2,.8,.2,1) both,
+    breathe 1.8s ease-in-out 1s infinite;
+    transform-origin: center center;
   }
-  span, b{
+
+  span, b {
     color: #333;
     left: 0;
     right: 0;
@@ -66,8 +123,14 @@
     z-index: 99999;
     padding-bottom: 150px;
     position: relative;
+
+    animation:
+            breathe 1.8s ease-in-out 1s infinite,
+            textGlow 2.2s ease-in-out 1.2s infinite;
+    pointer-events: none;
   }
-  b{
+
+  b {
     padding-top: 200px;
     padding-right: 40px;
   }
@@ -94,7 +157,6 @@
 
 
 body {
-  /* 设置页面主体字体大小 */
   font-size: 14px;
 }
 

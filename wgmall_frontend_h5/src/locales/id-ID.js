@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "Tidak ada data",
   "wallet.rechargeRecords": "Riwayat isi ulang",
   "wallet.withdrawalRecords": "Riwayat penarikan",
+  "wallet.freezingBalance": "Saldo yang dibekukan",
 
   // Halaman penarikan withdraw.jsx
   "withdraw.title": "Tarik",
@@ -155,6 +156,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Gagal menyetel alamat dompet",
   "withdrawp2p.submissionSuccess": "Permintaan penarikan telah diajukan, harap hubungi layanan pelanggan",
   "withdrawp2p.submissionFailed": "Anda belum memenuhi persyaratan jumlah tugas, harap selesaikan",
+
+  "withdrawwalletset.title": "Pengaturan Dompet",
+  "withdrawwalletset.walletAddress": "Alamat Dompet",
+  "withdrawwalletset.enterWalletAddress": "Silakan masukkan alamat dompet",
+  "withdrawwalletset.chainType": "Jaringan Penarikan",
+  "withdrawwalletset.fundPassword": "Kata Sandi Dana",
+  "withdrawwalletset.enterFundPassword": "Silakan masukkan kata sandi dana",
+  "withdrawwalletset.btnSave": "Simpan",
+  "withdrawwalletset.toast_incompleteBankInfo": "Silakan masukkan alamat dompet",
+  "withdrawwalletset.toast_needFundPassword": "Silakan masukkan kata sandi dana",
+  "withdrawwalletset.toast_wrongFundPassword": "Kata sandi dana salah",
+  "withdrawwalletset.toast_saveSuccess": "Berhasil disimpan",
+  "withdrawwalletset.toast_operationFailed": "Gagal menyimpan",
 
   // Halaman isi ulang recharge.jsx
   "recharge.title": "Isi Ulang",
@@ -384,6 +398,7 @@ export default {
   "taskuser.loan": "Pinjaman",
   "taskuser.signOut": "Keluar",
   "taskuser.invitationCode": "Kode undangan",
+  "taskuser.language": "Bahasa",
 
   // Halaman Matic matic.jsx
   "matic.accountBalance": "Saldo akun",

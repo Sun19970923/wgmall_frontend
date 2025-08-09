@@ -40,7 +40,7 @@ const topActions = [
       }
       Toast.show({
         icon: 'success',
-        content: 'Wating for you!',
+        content: 'Waiting for you!',
       });
       setTimeout(() => {
         navigate('/user/apply');

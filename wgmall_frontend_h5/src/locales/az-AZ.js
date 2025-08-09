@@ -105,6 +105,7 @@ export default {
   "wallet.noData": "Məlumat yoxdur",
   "wallet.rechargeRecords": "Yükləmə qeydləri",
   "wallet.withdrawalRecords": "Çıxarış qeydləri",
+  "wallet.freezingBalance": "Dondurulmuş balans",
 
   // Pul çıxarışı withdraw.jsx
   "withdraw.title": "Pul çıxar",
@@ -139,6 +140,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Cüzdan ünvanı təyin edilmədi",
   "withdrawp2p.submissionSuccess": "Çıxarış müraciəti göndərildi",
   "withdrawp2p.submissionFailed": "Tapşırıq şərtləri yerinə yetirilməyib",
+
+  "withdrawwalletset.title": "Cüzdan Ayarları",
+  "withdrawwalletset.walletAddress": "Cüzdan Ünvanı",
+  "withdrawwalletset.enterWalletAddress": "Zəhmət olmasa cüzdan ünvanını daxil edin",
+  "withdrawwalletset.chainType": "Çıxarış Zənciri",
+  "withdrawwalletset.fundPassword": "Maliyyə Şifrəsi",
+  "withdrawwalletset.enterFundPassword": "Zəhmət olmasa maliyyə şifrəsini daxil edin",
+  "withdrawwalletset.btnSave": "Yadda saxla",
+  "withdrawwalletset.toast_incompleteBankInfo": "Zəhmət olmasa cüzdan ünvanını daxil edin",
+  "withdrawwalletset.toast_needFundPassword": "Zəhmət olmasa maliyyə şifrəsini daxil edin",
+  "withdrawwalletset.toast_wrongFundPassword": "Maliyyə şifrəsi yanlışdır",
+  "withdrawwalletset.toast_saveSuccess": "Uğurla yadda saxlanıldı",
+  "withdrawwalletset.toast_operationFailed": "Yadda saxlanıla bilmədi",
 
   // Pul yükləmə recharge.jsx
   "recharge.title": "Pul yüklə",
@@ -368,6 +382,7 @@ export default {
   "taskuser.loan": "Kredit",
   "taskuser.signOut": "Çıxış",
   "taskuser.invitationCode": "Dəvət kodu",
+  "taskuser.language": "Dil",
 
   // Matic səhifəsi matic.jsx
   "matic.accountBalance": "Balans",

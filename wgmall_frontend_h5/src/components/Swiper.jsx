@@ -11,7 +11,11 @@ import { Button, Space, Swiper, Toast } from 'antd-mobile'
 
 import styles from './index.module.less'
 
-const colors = [require('@/assets/banner6.png'), require('@/assets/banner1.png'), require('@/assets/banner2.png')]
+const colors = [
+    require('@/assets/banner6.png'),
+    require('@/assets/banner1.png'),
+    require('@/assets/banner2.png'),
+]
 
 
 export default ({ onClick }) => {

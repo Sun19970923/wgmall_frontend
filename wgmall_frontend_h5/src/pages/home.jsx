@@ -27,6 +27,7 @@ import { random, type, search } from '@/api/product';
 import Hongbao from "../components/Hongbao";
 import LoadingMask from '../components/Loading';
 import { useTranslation } from 'react-i18next';
+import PosterModal from '@/components/PosterModal';
 
 
 const Home = () => {
@@ -171,6 +172,7 @@ const Home = () => {
     <div className={styles.indexContainer}>
       <LoadingMask visible={loading} />
 
+      <PosterModal /> {/* 🔹 登录后首次进入首页会自动弹 */}
 
 
       <Hongbao onChange={() => setHongbaoVisible(false)} visible={hongbaoVisible}></Hongbao>

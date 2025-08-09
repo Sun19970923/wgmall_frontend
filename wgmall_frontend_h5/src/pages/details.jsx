@@ -15,6 +15,8 @@ const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(); // 获取 t 函数
   const [user, setUser] = useState({}); // data
+  const [isFocused, setIsFocused] = useState(false); 
+  const [fouce, setFouce] = useState(false);
 
   const getData = async () => {
     let userinfo = JSON.parse(localStorage.getItem('item'));

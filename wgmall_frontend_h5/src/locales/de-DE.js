@@ -120,6 +120,7 @@ export default {
   "wallet.noData": "Keine Daten verfügbar",
   "wallet.rechargeRecords": "Aufladungsverlauf",
   "wallet.withdrawalRecords": "Auszahlungsverlauf",
+  "wallet.freezingBalance": "Eingefrorenes Guthaben",
 
   // Auszahlungsseite withdraw.jsx
   "withdraw.title": "Auszahlung",
@@ -154,6 +155,19 @@ export default {
   "withdrawp2p.addressSetFailed": "Festlegen der Wallet-Adresse fehlgeschlagen",
   "withdrawp2p.submissionSuccess": "Auszahlungsantrag eingereicht, bitte kontaktieren Sie den Kundenservice",
   "withdrawp2p.submissionFailed": "Sie haben die erforderliche Anzahl an Aufgaben nicht erreicht, bitte vervollständigen Sie diese",
+
+  "withdrawwalletset.title": "Wallet-Einstellungen",
+  "withdrawwalletset.walletAddress": "Wallet-Adresse",
+  "withdrawwalletset.enterWalletAddress": "Bitte Wallet-Adresse eingeben",
+  "withdrawwalletset.chainType": "Auszahlungs-Chain",
+  "withdrawwalletset.fundPassword": "Zahlungspasswort",
+  "withdrawwalletset.enterFundPassword": "Bitte Zahlungspasswort eingeben",
+  "withdrawwalletset.btnSave": "Speichern",
+  "withdrawwalletset.toast_incompleteBankInfo": "Bitte Wallet-Adresse eingeben",
+  "withdrawwalletset.toast_needFundPassword": "Bitte Zahlungspasswort eingeben",
+  "withdrawwalletset.toast_wrongFundPassword": "Falsches Zahlungspasswort",
+  "withdrawwalletset.toast_saveSuccess": "Erfolgreich gespeichert",
+  "withdrawwalletset.toast_operationFailed": "Speichern fehlgeschlagen",
 
   // Aufladungsseite recharge.jsx
   "recharge.title": "Aufladen",
@@ -383,6 +397,7 @@ export default {
   "taskuser.loan": "Kredit",
   "taskuser.signOut": "Abmelden",
   "taskuser.invitationCode": "Einladungscode",
+  "taskuser.language": "Sprache",
 
   // Task-Matic-Seite matic.jsx
   "matic.accountBalance": "Kontostand",

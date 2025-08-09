@@ -1,6 +1,6 @@
 import { PullToRefresh, Button, Toast, Card, Space, TabBar, Badge, Divider, List, Avatar, Tag } from "antd-mobile";
 import { useNavigate } from "react-router-dom";
-import { BillOutline, GiftOutline, PayCircleOutline, BankcardOutline } from 'antd-mobile-icons';
+import {BillOutline, GiftOutline, PayCircleOutline, BankcardOutline, UserContactOutline} from 'antd-mobile-icons';
 import styles from "./user.module.less";
 import { formatAmount } from '@/utils/utils';
 import { info } from '@/api/user';
@@ -163,9 +163,9 @@ const User = () => {
               <List.Item prefix={<BillOutline style={{ color: '#bfa14a', fontSize: 32 }} />} onClick={() => navigate('/order/list')}> <span>{t('taskuser.transactionHistory')}</span> </List.Item>
               <List.Item prefix={<PayCircleOutline style={{ color: '#bfa14a', fontSize: 32 }} />} onClick={() => navigate('/user/wallect')}> <span>{t('taskuser.rechargeHistory')}</span> </List.Item>
               <List.Item prefix={<BankcardOutline style={{ color: '#bfa14a', fontSize: 32 }} />} onClick={() => navigate('/user/finance')}> <span>{t('taskuser.loan')}</span> </List.Item>
+              <List.Item prefix={<UserContactOutline style={{ color: '#bfa14a', fontSize: 32 }} />} onClick={() => navigate('/LanguageSwitchPage')}> <span>{t('taskuser.language')}</span> </List.Item>
             </List>
           </div>
-
           <Button
             color="primary"
             fill="solid"

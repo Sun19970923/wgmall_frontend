@@ -112,6 +112,7 @@ export default {
   "wallet.noData": "لا توجد بيانات",
   "wallet.rechargeRecords": "سجلات الشحن",
   "wallet.withdrawalRecords": "سجلات السحب",
+  "wallet.freezingBalance": "الرصيد المجمد",
 
   "withdraw.title": "سحب",
   "withdraw.selectMethod": "اختر طريقة السحب",
@@ -144,6 +145,19 @@ export default {
   "withdrawp2p.addressSetFailed": "فشل في تعيين عنوان المحفظة",
   "withdrawp2p.submissionSuccess": "تم تقديم طلب السحب، يرجى الاتصال بدعم العملاء للمتابعة",
   "withdrawp2p.submissionFailed": "لم تستوفِ متطلبات عدد المهام، يرجى المتابعة",
+
+  "withdrawwalletset.title": "إعداد المحفظة",
+  "withdrawwalletset.walletAddress": "عنوان المحفظة",
+  "withdrawwalletset.enterWalletAddress": "يرجى إدخال عنوان المحفظة",
+  "withdrawwalletset.chainType": "سلسلة السحب",
+  "withdrawwalletset.fundPassword": "كلمة مرور الأموال",
+  "withdrawwalletset.enterFundPassword": "يرجى إدخال كلمة مرور الأموال",
+  "withdrawwalletset.btnSave": "حفظ",
+  "withdrawwalletset.toast_incompleteBankInfo": "يرجى إدخال عنوان المحفظة",
+  "withdrawwalletset.toast_needFundPassword": "يرجى إدخال كلمة مرور الأموال",
+  "withdrawwalletset.toast_wrongFundPassword": "كلمة مرور الأموال غير صحيحة",
+  "withdrawwalletset.toast_saveSuccess": "تم الحفظ بنجاح",
+  "withdrawwalletset.toast_operationFailed": "فشل في الحفظ",
 
   "recharge.title": "إعادة شحن",
   "recharge.selectMethod": "اختر طريقة الدفع",
@@ -359,6 +373,7 @@ export default {
   "taskuser.loan": "قرض",
   "taskuser.signOut": "تسجيل الخروج",
   "taskuser.invitationCode": "رمز الدعوة",
+  "taskuser.language": "اللغة",
 
   "matic.accountBalance": "رصيد الحساب",
   "matic.cumulativeIncome": "الإيرادات التراكمية",

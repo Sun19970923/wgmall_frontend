@@ -37,6 +37,7 @@ export default function Apply() {
     const [fileList, setFileList] = useState([]);
     const [fileList2, setFileList2] = useState([]);
     const [checkBanner, setCheckBanner] = useState(false);
+    const [fileListAvatar, setFileListAvatar] = useState([]);
 
     const mockUpload = (file) => {
         console.log(file);
@@ -47,6 +48,14 @@ export default function Apply() {
     };
 
     const mockUpload2 = (file) => {
+        console.log(file);
+        return {
+            url: URL.createObjectURL(file),
+            file: file
+        };
+    };
+
+    const mockUploadAvatar = (file) => {
         console.log(file);
         return {
             url: URL.createObjectURL(file),
@@ -71,7 +80,7 @@ export default function Apply() {
 
         // 遍历对象，将键值对添加到 FormData 实例中
         Object.keys(values).forEach(key => {
-            if (key === 'idFrontImage' || key === 'idBackImage') {
+            if (key === 'idFrontImage' || key === 'idBackImage' || key === 'shopAvatar') {
                 formData.append(key, values[key][0]?.file);
                 return;
             }
@@ -127,6 +136,19 @@ export default function Apply() {
                             </Button>
                         }
                     >
+                        <Form.Item required name="shopAvatar" label={t('Avatar')}>
+                            <ImageUploader
+                                value={fileListAvatar}
+                                onChange={setFileListAvatar}
+                                upload={mockUploadAvatar}
+                                multiple
+                                maxCount={1}
+                                showUpload={fileListAvatar.length < 1}
+                                onCountExceed={exceed => {
+                                    Toast.show(`${t('apply.maxSelectImage')} 1 ${t('apply.youSelectedTooMany')} ${exceed}`);
+                                }}
+                            />
+                        </Form.Item>
                         <Form.Item required name="shopName" label={t('apply.shopName')}>
                             <Input placeholder={t('apply.enterShopName')} />
                         </Form.Item>

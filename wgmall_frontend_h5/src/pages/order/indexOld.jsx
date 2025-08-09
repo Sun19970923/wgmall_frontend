@@ -103,7 +103,7 @@ const Home = () => {
             <br />  
             
             <Card>
-              <img className={styles.router_banner} onClick={() => navigate('/home')} src={require('@/assets/photo_2025-07-14_17-29-09.jpg')} alt="" />
+              <img className={styles.router_banner} onClick={() => navigate('/home')} src={require('@/assets/banner8.png')} alt="" />
             </Card>
 
         </PullToRefresh>

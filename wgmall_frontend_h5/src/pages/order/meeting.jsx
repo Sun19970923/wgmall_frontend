@@ -28,23 +28,18 @@ const BasicLayout = () => {
     const parsed = safeParse(raw);
     console.log('parsed userInfo:', parsed);
 
-    // 多路径取 username：优先级自上而下
-    const usernameFromNested =
-      parsed?.user?.username ||
-      parsed?.address?.user?.username ||
-      parsed?.address?.user?.user?.username ||
-      parsed?.user?.user?.username; // 额外保险
-
+    // 直接读取根级 username
+    const usernameDirect = parsed?.username;
     const fallback = localStorage.getItem('username') || '智子';
-    const username = usernameFromNested || fallback;
+    const username = usernameDirect || fallback;
 
     console.log('最终使用的 username:', username, {
-      usernameFromNested,
+      usernameDirect,
       fallback,
     });
 
-    if (usernameFromNested) {
-      localStorage.setItem('username', usernameFromNested);
+    if (usernameDirect) {
+      localStorage.setItem('username', usernameDirect);
     }
 
     if (typeof window !== 'undefined' && window._MEIQIA) {
@@ -63,6 +58,7 @@ const BasicLayout = () => {
       window._MEIQIA?.('beforeCloseWindow', null);
     };
   }, [navigate]);
+
 
   return null;
 };
